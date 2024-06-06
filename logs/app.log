@@ -15534,3 +15534,951 @@ display: none;
 ]]>
 	</style>
 </doc>
+2024-06-06 16:53:26 INFO  com.ouestfrance.modecitation.ModecitationApplication - Starting ModecitationApplication using Java 17.0.11 with PID 17844 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-06 16:53:26 INFO  com.ouestfrance.modecitation.ModecitationApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.ModecitationApplication - Started ModecitationApplication in 0.889 seconds (process running for 2.042)
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Starting applyQuoteMode
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading rules from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Rules JSON content: [{"desc":"les paragraphes par defaut","xpath":"//texte/p[not(@class) or not(string-length(@class))]/text()"},{"desc":"les paragraphes de style 'Texte sans alinéa'","xpath":"//texte/p[@class='textesansalinea']/text()"},{"desc":"les paragraphes de style 'Texte alinéa'","xpath":"//texte/p[@class='textealinea']/text()"},{"desc":"les paragraphes de style 'Texte'","xpath":"//texte/p[@class='texte']/text()"}]
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.XmlService - Loading XML from string
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Loaded XML Document content: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p>«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p>«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p>«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p>«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Applying rules to the document
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[not(@class) or not(string-length(@class))]/text(): 17
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à 
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: , vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textesansalinea']/text(): 0
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textealinea']/text(): 0
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='texte']/text(): 0
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Modified XML Document content before saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Saving modified document to: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Services.XmlService - Saving document to file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Finished applyQuoteMode
+2024-06-06 16:53:27 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Final XML Document content after saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:54:18 INFO  com.ouestfrance.modecitation.ModecitationApplication - Starting ModecitationApplication using Java 17.0.11 with PID 8460 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-06 16:54:18 INFO  com.ouestfrance.modecitation.ModecitationApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.ModecitationApplication - Started ModecitationApplication in 0.889 seconds (process running for 2.118)
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Starting applyQuoteMode
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading rules from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Rules JSON content: [{"desc":"les paragraphes par defaut","xpath":"//texte/p[not(@class) or not(string-length(@class))]/text()"},{"desc":"les paragraphes de style 'Texte sans alinéa'","xpath":"//texte/p[@class='textesansalinea']/text()"},{"desc":"les paragraphes de style 'Texte alinéa'","xpath":"//texte/p[@class='textealinea']/text()"},{"desc":"les paragraphes de style 'Texte'","xpath":"//texte/p[@class='texte']/text()"}]
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.XmlService - Loading XML from string
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Loaded XML Document content: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p>«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p>«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p>«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p>«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Applying rules to the document
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[not(@class) or not(string-length(@class))]/text(): 17
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à 
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: , vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textesansalinea']/text(): 0
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textealinea']/text(): 0
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='texte']/text(): 0
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Modified XML Document content before saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Saving modified document to: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Services.XmlService - Saving document to file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Finished applyQuoteMode
+2024-06-06 16:54:19 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Final XML Document content after saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:57:17 INFO  com.ouestfrance.modecitation.ModecitationApplication - Starting ModecitationApplication using Java 17.0.11 with PID 18620 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-06 16:57:17 INFO  com.ouestfrance.modecitation.ModecitationApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.ModecitationApplication - Started ModecitationApplication in 1.323 seconds (process running for 3.002)
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Starting applyQuoteMode
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading rules from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Rules JSON content: [{"desc":"les paragraphes par defaut","xpath":"//texte/p[not(@class) or not(string-length(@class))]/text()"},{"desc":"les paragraphes de style 'Texte sans alinéa'","xpath":"//texte/p[@class='textesansalinea']/text()"},{"desc":"les paragraphes de style 'Texte alinéa'","xpath":"//texte/p[@class='textealinea']/text()"},{"desc":"les paragraphes de style 'Texte'","xpath":"//texte/p[@class='texte']/text()"}]
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.XmlService - Loading XML from string
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Loaded XML Document content: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le «Roland-Garros» titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer «Roland-Garros» l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p>«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p>«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p>«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p>«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Applying rules to the document
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[not(@class) or not(string-length(@class))]/text(): 17
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à 
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: , vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textesansalinea']/text(): 0
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textealinea']/text(): 0
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='texte']/text(): 0
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Modified XML Document content before saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le «Roland-Garros» titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer «Roland-Garros» l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Saving modified document to: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Services.XmlService - Saving document to file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Finished applyQuoteMode
+2024-06-06 16:57:18 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Final XML Document content after saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le «Roland-Garros» titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer «Roland-Garros» l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:57:44 INFO  com.ouestfrance.modecitation.ModecitationApplication - Starting ModecitationApplication using Java 17.0.11 with PID 19604 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-06 16:57:44 INFO  com.ouestfrance.modecitation.ModecitationApplication - No active profile set, falling back to 1 default profile: "default"
+2024-06-06 16:57:44 INFO  com.ouestfrance.modecitation.ModecitationApplication - Started ModecitationApplication in 1.237 seconds (process running for 2.768)
+2024-06-06 16:57:44 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Starting applyQuoteMode
+2024-06-06 16:57:44 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading rules from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Rules JSON content: [{"desc":"les paragraphes par defaut","xpath":"//texte/p[not(@class) or not(string-length(@class))]/text()"},{"desc":"les paragraphes de style 'Texte sans alinéa'","xpath":"//texte/p[@class='textesansalinea']/text()"},{"desc":"les paragraphes de style 'Texte alinéa'","xpath":"//texte/p[@class='textealinea']/text()"},{"desc":"les paragraphes de style 'Texte'","xpath":"//texte/p[@class='texte']/text()"}]
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML content from: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.XmlService - Reading XML file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree2.xml
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.XmlService - Loading XML from string
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Loaded XML Document content: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p>«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p>«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p>«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p>«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Applying rules to the document
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[not(@class) or not(string-length(@class))]/text(): 17
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à 
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: , vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide», avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur. «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs», avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici», déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).» Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu. «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski», a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applied q tag around text: «Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Matched quote: «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Node content: Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textesansalinea']/text(): 0
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='textealinea']/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='textealinea']/text(): 0
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying rule with xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Applying xpath: //texte/p[@class='texte']/text()
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.RulesService - Number of nodes found for XPath //texte/p[@class='texte']/text(): 0
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Modified XML Document content before saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Saving modified document to: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Services.XmlService - Saving document to file: C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Finished applyQuoteMode
+2024-06-06 16:57:45 INFO  com.ouestfrance.modecitation.Treatment.ModeCitationTreatment - Final XML Document content after saving: <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RM5EspWwlCp2jc4Ueut8KKI">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="RSkIbFj225gaVk38MSt6jrI">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="RWufeBEbKumpgL2B5SJ0OjP">
+			<photo class="normal" dtxInsert="image - block" id="RF85EGRGXbGqskR4LDCFLkI" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RgqP596ivq0p16hxJFIbXHM">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="R9quZ8tTczHCGYXG2grUFrL">
+			<p>PARIS, 6 juin (Reuters) - Quelle que soit l’issue de sa demi-finale à <b>«Roland-Garros»</b>, vendredi, face à Carlos Alcaraz, l’Italien Jannik Sinner est assuré de devenir numéro un mondial lundi pour la première fois de sa carrière à 22 ans.</p>
+			<p><q class="containsQuotes">«C’est le rêve de tout joueur d’être numéro un mais d’un autre côté, c’est regrettable de voir Novak (Djokovic) déclarer forfait ici. Je lui souhaite un rétablissement rapide»</q>, avait-il déclaré mardi sur le court, quelques minutes après le retrait du Serbe le «propulsant d’office à la première place mondiale.</p>
+			<p>Depuis l’instauration du classement ATP en 1973, aucun Italien n’avait eu cet honneur.<q class="containsQuotes">«Cela veut dire énormément pour moi ! Déjà, c’est bien pour le pays. C’est un bon pays, avec de très bons entraîneurs, de très bons joueurs»</q>, avait-il poursuivi en conférence de presse où il avait été accueilli par les applaudissements des journalistes transalpins. «Nous sommes à un tournant. Je suis content de faire partie de ce mouvement italien.»</p>
+			<p>Symbole de la bonne santé du tennis transalpin, sa compatriote Jasmine Paolini est pour la première fois de sa carrière en demi-finales d’un Grand Chelem après sa victoire surprise, mercredi, contre la Kazakhe et tête de série n°4 Elena Rybakina (6-2, 4-6, 6-4). Elle espère succéder à Flavia Pennetta, dernière Italienne victorieuse d’un Majeur à l’US Open 2015.</p>
+			<p>Cette place de numéro un mondial confirme la progression linéaire de Jannik Sinner depuis la fin de saison 2023, en témoignent ses quatre défaites en 57 matchs depuis septembre dernier, dont deux en 2024. Dans ce laps de temps, il a battu Novak Djokovic à trois reprises sur les quatre dernières confrontations, permis à l’Italie de remporter sa «première Coupe Davis depuis 1976 et surtout décroché son premier Grand Chelem à l’Open d’Australie en janvier.</p>
+			<p>Il a succédé à Adriano Panatta», dernier vainqueur transalpin d’un Grand Chelem lors de Roland-Garros 1976.</p>
+			<p><q class="containsQuotes">«Je crois que j’ai beaucoup appris de mes défaites, notamment il y a un an, ici»</q>, déclarait-il mardi pour expliquer ses progrès, en référence à son élimination dès le deuxième tour de Roland-Garros 2023 contre l’Allemand Daniel Altmaier (6-7 7-6, 1-6, 7-6, 7-5).</p>
+			<p><q class="containsQuotes">«Il y a aussi l’US Open. Il y a eu un petit déclic, après la défaite contre Sasha (Zverev).»</q>Il s’était incliné en huitièmes de finale contre l’Allemand (6-4, 3-6, 6-2, 4-6, 6-3), en septembre dernier.</p>
+			<p>Avant le début du tournoi, son futur adversaire pour une place en finale, l’Espagnol et numéro trois mondial Carlos Alcaraz, louait son jeu.<q class="containsQuotes">«Il ne fait aucun mauvais coup. Tout ce qu’il fait est bien fait. La manière dont il frappe la balle est tout à fait incroyable, la manière dont il se déplace est fantastique.»</q></p>
+			<p>Il s’était présenté sur la terre battue parisienne avec quelques incertitudes concernant sa forme physique après une blessure à la hanche l’ayant obligé à se retirer du Masters 1000 de Madrid et à faire l’impasse sur celui de Rome.</p>
+			<p>Depuis son entrée en lice, le droitier longiligne (1,88 m) n’a concédé qu’un seul set en cinq rencontres, lors de son huitième de finale face au Français Corentin Moutet.</p>
+			<p>Participant à son cinquième Roland-Garros, il avait atteint les quarts de finale dès sa première apparition en 2020. Alors âgé de 18 ans, Jannik Sinner avait été éliminé par le futur vainqueur Rafael Nadal, comme l’année suivante en huitièmes de finale.</p>
+			<p>Né à San Candido, dans le Trentin-Tyrol du Sud, une région frontalière de l’Autriche et de la Suisse, Jannik Sinner a longtemps dévalé les pistes de ski avec un certain talent.</p>
+			<p>Champion national de sa catégorie en 2008 et vice-champion national en 2012, il s’est consacré uniquement au tennis à l’âge de 13 ans.</p>
+			<p><q class="containsQuotes">«Je ne crois pas que j’aurais pu aller vraiment en ligue professionnelle en ski»</q>, a-t-il admis vendredi dernier en conférence de presse. «Cela m’a aidé du point de vue de mon équilibre sur le court, quand je glisse notamment , mais je pense que cela m’a aussi aidé mentalement.»</p>
+			<p>Passé par l’académie de Ricardo Piatti, ancien entraîneur de Novak Djokovic notamment, l’Italien est désormais encadré par son compatriote Simone Vagnozzi et l’Australien Darren Cahill, passé auprès d’anciens numéros un mondiaux (Lleyton Hewitt, Andre Agassi et Simona Halep). (Reportage de Vincent Daheron)</p>
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+	<style id="U83307702311Ckv" type="text/css">
+		<![CDATA[{}
+#U83307702311Ckv {
+display: none;
+}
+]]>
+	</style>
+</doc>
