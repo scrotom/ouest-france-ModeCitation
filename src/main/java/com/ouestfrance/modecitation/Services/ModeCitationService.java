@@ -117,9 +117,11 @@ public class ModeCitationService {
         logger.info("Number of nodes found for XPath {}: {}", xpath, nodes.getLength());
         for (int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
+            logger.info("Node content: {}", node.getTextContent());
             deepCheck(node, document);
         }
     }
+
 
     private void deepCheck(Node node, Document document) {
         if (node.getNodeType() == Node.TEXT_NODE) {
@@ -142,8 +144,7 @@ public class ModeCitationService {
             int start = matcher.start();
             int end = matcher.end();
 
-            Node textNode = node;
-            Node parentNode = textNode.getParentNode();
+            Node parentNode = node.getParentNode();
 
             if (parentNode.getNodeName().equals("q")) {
                 return;
@@ -167,7 +168,7 @@ public class ModeCitationService {
                 fragment.appendChild(document.createTextNode(after));
             }
 
-            parentNode.replaceChild(fragment, textNode);
+            parentNode.replaceChild(fragment, node);
             logger.info("Applied q tag around text: {}", match);
         }
     }
