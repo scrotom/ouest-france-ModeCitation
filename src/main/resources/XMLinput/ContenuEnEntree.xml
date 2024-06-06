@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<?EM-dtdExt /SysConfig/Common/Rules/OFR.dtx?>
-<?EM-templateName /SysConfig/Common/Templates/Article.xml?>
-<?xml-stylesheet type="text/css" href="/SysConfig/Common/Css/base.css"?>
-<!DOCTYPE doc SYSTEM "/SysConfig/Common/Rules/OFR.dtd">
 <doc xml:lang="fr">
 	<article>
 		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
