@@ -1,0 +1,19 @@
+{
+  "all" : [
+    {
+      "desc" : "les paragraphes par defaut",
+      "xpath" : "/texte/p[not(@class) or not(string-length(@class))]/text()"
+    },
+    {
+      "desc" : "les paragraphes de style 'Texte sans alin�a'",
+      "xpath" : "/texte/p[@class='textesansalinea']/text()"
+    },
+    {
+      "desc" : "les paragraphes de style 'Texte alin�a'",
+      "xpath" : "/texte/p[@class='textealinea']/text()"
+    },
+    {
+      "desc" : "les paragraphes de style 'Texte'",
+      "xpath" : "/texte/p[@class='texte']/text()"
+    }]
+}
