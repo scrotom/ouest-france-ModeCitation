@@ -55,6 +55,7 @@ public class RulesService {
                     log.warn("Rule without xpath: {}", ruleNode);
                 }
             }
+            replaceBoldWithQuote(document);
         } catch (Exception e) {
             log.error("Error applying rules to document", e);
             throw new CustomAppException("Error applying rules to document", e);
@@ -139,4 +140,27 @@ public class RulesService {
         }
     }
 
+    public void replaceBoldWithQuote(Document document) throws CustomAppException {
+        try {
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            NodeList boldNodes = (NodeList) xPath.evaluate("//b", document, XPathConstants.NODESET);
+            log.info("Number of <b> nodes found: {}", boldNodes.getLength());
+
+            for (int i = 0; i < boldNodes.getLength(); i++) {
+                Node boldNode = boldNodes.item(i);
+                Element qElement = document.createElement("q");
+                qElement.setAttribute("class", "containsQuotes");
+
+                while (boldNode.hasChildNodes()) {
+                    qElement.appendChild(boldNode.getFirstChild());
+                }
+
+                boldNode.getParentNode().replaceChild(qElement, boldNode);
+                log.info("<b> tag replaced with <q class=\"containsQuotes\">");
+            }
+        } catch (Exception e) {
+            log.error("Error replacing <b> with <q>", e);
+            throw new CustomAppException("Error replacing <b> with <q>", e);
+        }
+    }
 }

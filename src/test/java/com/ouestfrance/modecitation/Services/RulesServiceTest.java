@@ -207,8 +207,6 @@ public class RulesServiceTest {
         assertEquals(".", parent.getChildNodes().item(2).getTextContent());
     }
 
-
-    /*
     @Test
     public void testApplySurroundedContents_Exception() throws Exception {
         // Simulation du document XML
@@ -217,11 +215,51 @@ public class RulesServiceTest {
         Document document = builder.newDocument();
         Node node = document.createTextNode("Some text with «quotes».");
 
+        // Créez une exception pour le test
         RulesService spyRulesService = Mockito.spy(rulesService);
-        doThrow(new RuntimeException("Test exception")).when(spyRulesService).applySurroundedContents(any(Node.class), any(Document.class));
+        doThrow(new CustomAppException("Test exception")).when(spyRulesService).applySurroundedContents(any(Node.class), any(Document.class));
 
         assertThrows(CustomAppException.class, () -> {
             spyRulesService.applySurroundedContents(node, document);
         });
-    }*/
+    }
+    // Nouveau test pour replaceBoldWithQuote - cas de réussite
+    @Test
+    public void testReplaceBoldWithQuote_Success() throws Exception {
+        // Simulation du document XML avec balises <b>
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.newDocument();
+        Element parent = document.createElement("parent");
+        document.appendChild(parent);
+
+        Element boldElement = document.createElement("b");
+        boldElement.appendChild(document.createTextNode("«C’est le rêve de tout joueur d’être numéro un.»"));
+        parent.appendChild(boldElement);
+
+        RulesService spyRulesService = Mockito.spy(rulesService);
+        spyRulesService.replaceBoldWithQuote(document);
+
+        // Vérifiez que la balise <b> a été remplacée par une balise <q>
+        NodeList qNodes = document.getElementsByTagName("q");
+        assertEquals(1, qNodes.getLength());
+        assertEquals("containsQuotes", ((Element) qNodes.item(0)).getAttribute("class"));
+        assertEquals("«C’est le rêve de tout joueur d’être numéro un.»", qNodes.item(0).getTextContent());
+    }
+
+    @Test
+    public void testReplaceBoldWithQuote_Exception() throws Exception {
+        // Simulation du document XML
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document document = builder.newDocument();
+
+        // Créez une exception pour le test
+        RulesService spyRulesService = Mockito.spy(rulesService);
+        doThrow(new CustomAppException("Test exception")).when(spyRulesService).replaceBoldWithQuote(any(Document.class));
+
+        assertThrows(CustomAppException.class, () -> {
+            spyRulesService.replaceBoldWithQuote(document);
+        });
+    }
 }

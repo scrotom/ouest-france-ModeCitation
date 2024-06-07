@@ -19,11 +19,11 @@ public class StartupRunnerTest {
         modeCitationTreatment = mock(ModeCitationTreatment.class);
         startupRunner = new StartupRunner();
 
-        injectPrivateField(startupRunner, "modeCitationService", modeCitationTreatment);
+        injectPrivateField(startupRunner, modeCitationTreatment);
     }
 
-    private void injectPrivateField(Object target, String fieldName, Object value) throws Exception {
-        Field field = target.getClass().getDeclaredField(fieldName);
+    private void injectPrivateField(Object target, Object value) throws Exception {
+        Field field = target.getClass().getDeclaredField("modeCitationService");
         field.setAccessible(true);
         field.set(target, value);
     }
