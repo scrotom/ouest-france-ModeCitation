@@ -51,8 +51,8 @@ public class ModeCitationTreatmentTest {
     }
 
     @Test
+    // Vérifie que applyQuoteMode fonctionne correctement
     public void testApplyQuoteMode_Success() throws Exception {
-        // Création des fichiers temporaires
         String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
         Files.write(tempDir.resolve("input.xml"), xmlContent.getBytes());
 
@@ -74,8 +74,8 @@ public class ModeCitationTreatmentTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors de l'application du mode citation
     public void testApplyQuoteMode_Exception() throws Exception {
-        // Création des fichiers temporaires
         String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
         Files.write(tempDir.resolve("input.xml"), xmlContent.getBytes());
 

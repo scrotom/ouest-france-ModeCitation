@@ -29,12 +29,14 @@ public class StartupRunnerTest {
     }
 
     @Test
+    // Vérifie que applyQuoteMode est appelé lors de l'exécution
     public void testRun_Success() throws Exception {
         startupRunner.run();
         verify(modeCitationTreatment, times(1)).applyQuoteMode();
     }
 
     @Test
+    // Vérifie le comportement lorsqu'une exception est lancée lors de l'exécution
     public void testRun_Exception() throws Exception {
         doThrow(CustomAppException.class).when(modeCitationTreatment).applyQuoteMode();
         startupRunner.run();

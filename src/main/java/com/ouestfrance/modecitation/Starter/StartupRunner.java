@@ -1,3 +1,12 @@
+/*
+ * Nom         : StartupRunner.java
+ *
+ * Description : Classe permettant d'exécuter le traitement au démarrage de l'application.
+ *
+ * Date        : 07/06/2024
+ *
+ */
+
 package com.ouestfrance.modecitation.Starter;
 
 import com.ouestfrance.modecitation.Exception.CustomAppException;
@@ -14,12 +23,13 @@ public class StartupRunner implements CommandLineRunner {
     @Autowired
     private ModeCitationTreatment modeCitationService;
 
+    //Lance le service de traitement des citations au démarrage
     @Override
     public void run(String... args) {
         try {
             modeCitationService.applyQuoteMode();
         } catch (CustomAppException e) {
-            log.error("An error occurred while applying quote mode", e);
+            log.error("Une erreur est survenue lors de l'application du mode citation", e);
         }
     }
 }

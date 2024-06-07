@@ -32,8 +32,8 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie le chargement d'un document XML depuis un fichier
     public void testLoadDocumentFromFile_Success() throws Exception {
-        // Création d'un fichier XML temporaire
         Path xmlFile = tempDir.resolve("test.xml");
         String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
         Files.write(xmlFile, xmlContent.getBytes());
@@ -43,8 +43,8 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie le chargement d'un document XML depuis une URL
     public void testLoadDocumentFromURL_Success() throws Exception {
-        // Mock URL content
         String url = "http://example.com/test.xml";
         String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
 
@@ -56,6 +56,7 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si le fichier XML n'est pas trouvé
     public void testLoadDocumentFromFile_Exception() {
         assertThrows(CustomAppException.class, () -> {
             xmlService.loadDocument("invalid_path.xml");
@@ -63,6 +64,7 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors du chargement depuis une URL
     public void testLoadDocumentFromURL_Exception() throws Exception {
         String url = "http://example.com/test.xml";
 
@@ -75,6 +77,7 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie que IOException est lancée si le fichier XML n'est pas trouvé
     public void testReadXMLFromFile_Exception() {
         assertThrows(IOException.class, () -> {
             xmlService.readXMLFromFile("invalid_path.xml");
@@ -82,6 +85,7 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie la lecture du contenu XML depuis une URL
     public void testReadXMLFromURL_Success() throws Exception {
         String url = "http://example.com/test.xml";
         String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
@@ -95,6 +99,7 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie que IOException est lancée si une exception survient lors de la lecture depuis une URL
     public void testReadXMLFromURL_Exception() throws IOException {
         String url = "http://example.com/test.xml";
 
@@ -107,6 +112,7 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée pour un contenu XML invalide
     public void testLoadXMLFromString_Exception() {
         String invalidXmlContent = "<doc><invalid></doc>";
         assertThrows(CustomAppException.class, () -> {
@@ -115,31 +121,29 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie la sauvegarde d'un document XML dans un fichier
     public void testSaveDocumentToFile_Success() throws Exception {
-        // Création d'un document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
         document.appendChild(document.createElement("doc"));
 
-        // Sauvegarde du document XML
         Path xmlFile = tempDir.resolve("output.xml");
         xmlService.saveDocumentToFile(document, xmlFile.toString());
 
-        // Vérification du contenu du fichier
         String savedContent = new String(Files.readAllBytes(xmlFile));
         assertTrue(savedContent.contains("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>"));
         assertTrue(savedContent.contains("<doc/>"));
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors de la sauvegarde du document XML
     public void testSaveDocumentToFile_Exception() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
         document.appendChild(document.createElement("doc"));
 
-        // Mock Transformer and TransformerFactory
         Transformer mockTransformer = mock(Transformer.class);
         TransformerFactory mockTransformerFactory = mock(TransformerFactory.class);
         when(mockTransformerFactory.newTransformer()).thenReturn(mockTransformer);
@@ -153,6 +157,7 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie la conversion d'un document XML en chaîne de caractères
     public void testDocumentToString() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -166,13 +171,13 @@ public class XmlServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors de la conversion du document en chaîne
     public void testDocumentToString_Exception() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
         document.appendChild(document.createElement("doc"));
 
-        // Mock Transformer and TransformerFactory
         Transformer mockTransformer = mock(Transformer.class);
         TransformerFactory mockTransformerFactory = mock(TransformerFactory.class);
         when(mockTransformerFactory.newTransformer()).thenReturn(mockTransformer);

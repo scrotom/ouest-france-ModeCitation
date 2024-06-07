@@ -1,3 +1,12 @@
+/*
+ * Nom         : RulesService.java
+ *
+ * Description : Classe permettant de lire et appliquer des règles JSON sur un document XML.
+ *
+ * Date        : 07/06/2024
+ *
+ */
+
 package com.ouestfrance.modecitation.Services;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -24,6 +33,7 @@ import java.util.regex.Pattern;
 @Log4j2
 public class RulesService {
 
+    //Lit les règles à partir d'un fichier JSON
     public JsonNode readRules(String rulesJsonPath) throws CustomAppException {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -31,17 +41,18 @@ public class RulesService {
             JsonNode allRulesNode = rulesNode.get("all");
 
             if (allRulesNode == null || !allRulesNode.isArray()) {
-                log.error("Invalid rules JSON format: 'all' key not found or is not an array");
-                throw new CustomAppException("Invalid rules JSON format: 'all' key not found or is not an array");
+                log.error("Format JSON des règles invalide : clé 'all' non trouvée ou n'est pas un tableau");
+                throw new CustomAppException("Format JSON des règles invalide : clé 'all' non trouvée ou n'est pas un tableau");
             }
 
             return allRulesNode;
         } catch (IOException e) {
-            log.error("Error reading rules JSON file", e);
-            throw new CustomAppException("Error reading rules JSON file", e);
+            log.error("Erreur lors de la lecture du fichier JSON des règles", e);
+            throw new CustomAppException("Erreur lors de la lecture du fichier JSON des règles", e);
         }
     }
 
+    //Applique les règles à un document XML
     public void applyRules(Document document, JsonNode allRulesNode) throws CustomAppException {
         try {
             Iterator<JsonNode> rulesIterator = allRulesNode.elements();
@@ -49,36 +60,38 @@ public class RulesService {
                 JsonNode ruleNode = rulesIterator.next();
                 JsonNode xpathNode = ruleNode.get("xpath");
                 if (xpathNode != null) {
-                    log.info("Applying rule with xpath: {}", xpathNode.asText());
+                    log.info("Application de la règle avec xpath: {}", xpathNode.asText());
                     applyRule(document, xpathNode.asText());
                 } else {
-                    log.warn("Rule without xpath: {}", ruleNode);
+                    log.warn("Règle sans xpath: {}", ruleNode);
                 }
             }
             replaceBoldWithQuote(document);
         } catch (Exception e) {
-            log.error("Error applying rules to document", e);
-            throw new CustomAppException("Error applying rules to document", e);
+            log.error("Erreur lors de l'application des règles au document", e);
+            throw new CustomAppException("Erreur lors de l'application des règles au document", e);
         }
     }
 
+    //Applique une règle spécifique au document XML
     public void applyRule(Document document, String xpath) throws CustomAppException {
         try {
-            log.info("Applying xpath: {}", xpath);
+            log.info("Application de xpath: {}", xpath);
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList nodes = (NodeList) xPath.evaluate(xpath, document, XPathConstants.NODESET);
-            log.info("Number of nodes found for XPath {}: {}", xpath, nodes.getLength());
+            log.info("Nombre de nœuds trouvés pour XPath {}: {}", xpath, nodes.getLength());
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node node = nodes.item(i);
-                log.info("Node content: {}", node.getTextContent());
+                log.info("Contenu du nœud: {}", node.getTextContent());
                 deepCheck(node, document);
             }
         } catch (Exception e) {
-            log.error("Error applying XPath: {}", xpath, e);
-            throw new CustomAppException("Error applying XPath: " + xpath, e);
+            log.error("Erreur lors de l'application de XPath: {}", xpath, e);
+            throw new CustomAppException("Erreur lors de l'application de XPath: " + xpath, e);
         }
     }
 
+    //Effectue une vérification approfondie du nœud et de ses enfants
     public void deepCheck(Node node, Document document) throws CustomAppException {
         try {
             if (node.getNodeType() == Node.TEXT_NODE) {
@@ -90,11 +103,12 @@ public class RulesService {
                 }
             }
         } catch (Exception e) {
-            log.error("Error during deep check", e);
-            throw new CustomAppException("Error during deep check", e);
+            log.error("Erreur lors de la vérification approfondie", e);
+            throw new CustomAppException("Erreur lors de la vérification approfondie", e);
         }
     }
 
+    //Applique des balises <q> autour du contenu textuel entouré de guillemets français
     public void applySurroundedContents(Node node, Document document) throws CustomAppException {
         try {
             String textContent = node.getTextContent();
@@ -102,13 +116,13 @@ public class RulesService {
             Matcher matcher = Pattern.compile(regex).matcher(textContent);
             while (matcher.find()) {
                 String match = matcher.group();
-                log.info("Matched quote: {}", match);
+                log.info("Citation trouvée: {}", match);
                 int start = matcher.start();
                 int end = matcher.end();
 
                 Node parentNode = node.getParentNode();
 
-                // Check if the parentNode is null before accessing it
+                // Vérifie si le parentNode est null avant de l'utiliser
                 if (parentNode == null || "q".equals(parentNode.getNodeName())) {
                     return;
                 }
@@ -132,19 +146,20 @@ public class RulesService {
                 }
 
                 parentNode.replaceChild(fragment, node);
-                log.info("Applied q tag around text: {}", match);
+                log.info("Balise <q> appliquée autour du texte: {}", match);
             }
         } catch (Exception e) {
-            log.error("Error applying surrounded contents", e);
-            throw new CustomAppException("Error applying surrounded contents", e);
+            log.error("Erreur lors de l'application des contenus entourés", e);
+            throw new CustomAppException("Erreur lors de l'application des contenus entourés", e);
         }
     }
 
+    //Remplace les balises <b> par des balises <q> avec une classe spécifique
     public void replaceBoldWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList boldNodes = (NodeList) xPath.evaluate("//b", document, XPathConstants.NODESET);
-            log.info("Number of <b> nodes found: {}", boldNodes.getLength());
+            log.info("Nombre de nœuds <b> trouvés: {}", boldNodes.getLength());
 
             for (int i = 0; i < boldNodes.getLength(); i++) {
                 Node boldNode = boldNodes.item(i);
@@ -156,11 +171,11 @@ public class RulesService {
                 }
 
                 boldNode.getParentNode().replaceChild(qElement, boldNode);
-                log.info("<b> tag replaced with <q class=\"containsQuotes\">");
+                log.info("Balise <b> remplacée par <q class=\"containsQuotes\">");
             }
         } catch (Exception e) {
-            log.error("Error replacing <b> with <q>", e);
-            throw new CustomAppException("Error replacing <b> with <q>", e);
+            log.error("Erreur lors du remplacement de <b> par <q>", e);
+            throw new CustomAppException("Erreur lors du remplacement de <b> par <q>", e);
         }
     }
 }

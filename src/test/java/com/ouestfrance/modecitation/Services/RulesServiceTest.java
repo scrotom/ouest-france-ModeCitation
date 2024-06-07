@@ -37,8 +37,8 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie que les règles sont lues correctement depuis un fichier JSON valide
     public void testReadRules_Success() throws IOException, CustomAppException {
-        // Création d'un fichier JSON temporaire
         Path jsonFile = tempDir.resolve("rules.json");
         String jsonContent = "{ \"all\": [{ \"desc\": \"test\", \"xpath\": \"//test\" }] }";
         Files.write(jsonFile, jsonContent.getBytes());
@@ -50,6 +50,7 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée pour un format JSON invalide
     public void testReadRules_InvalidFormat() {
         assertThrows(CustomAppException.class, () -> {
             Path jsonFile = tempDir.resolve("invalid_rules.json");
@@ -61,6 +62,7 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si le fichier JSON n'est pas trouvé
     public void testReadRules_FileNotFound() {
         assertThrows(CustomAppException.class, () -> {
             rulesService.readRules("invalid_path.json");
@@ -68,15 +70,14 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie que les règles sont appliquées correctement à un document XML
     public void testApplyRules_Success() throws Exception {
-        // Création d'un fichier JSON temporaire
         Path jsonFile = tempDir.resolve("rules.json");
         String jsonContent = "{ \"all\": [{ \"desc\": \"test\", \"xpath\": \"//test\" }] }";
         Files.write(jsonFile, jsonContent.getBytes());
 
         JsonNode rulesNode = rulesService.readRules(jsonFile.toString());
 
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
@@ -90,15 +91,14 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie le comportement lorsqu'une règle ne contient pas de xpath
     public void testApplyRules_RuleWithoutXpath() throws Exception {
-        // Création d'un fichier JSON temporaire
         Path jsonFile = tempDir.resolve("rules.json");
         String jsonContent = "{ \"all\": [{ \"desc\": \"test\" }] }";
         Files.write(jsonFile, jsonContent.getBytes());
 
         JsonNode rulesNode = rulesService.readRules(jsonFile.toString());
 
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
@@ -107,20 +107,18 @@ public class RulesServiceTest {
 
         spyRulesService.applyRules(document, rulesNode);
 
-        // Vérification que la méthode applyRule n'a pas été appelée
         verify(spyRulesService, times(0)).applyRule(any(Document.class), anyString());
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors de l'application des règles
     public void testApplyRules_Exception() throws Exception {
-        // Création d'un fichier JSON temporaire
         Path jsonFile = tempDir.resolve("rules.json");
         String jsonContent = "{ \"all\": [{ \"desc\": \"test\", \"xpath\": \"//test\" }] }";
         Files.write(jsonFile, jsonContent.getBytes());
 
         JsonNode rulesNode = rulesService.readRules(jsonFile.toString());
 
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
@@ -136,8 +134,8 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors de l'application d'une règle
     public void testApplyRule_Exception() throws Exception {
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
@@ -151,20 +149,18 @@ public class RulesServiceTest {
             spyRulesService.applyRule(document, "//test");
         });
 
-        // Vérifiez que deepCheck a été appelé et a déclenché l'exception
         verify(spyRulesService, times(1)).deepCheck(any(Node.class), any(Document.class));
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors de la vérification approfondie d'un nœud
     public void testDeepCheck_Exception() throws Exception {
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
         Element node = document.createElement("test");
         document.appendChild(node);
 
-        // Ajoutez un nœud texte comme enfant de l'élément pour déclencher applySurroundedContents
         Node textNode = document.createTextNode("Some text with «quotes».");
         node.appendChild(textNode);
 
@@ -175,32 +171,27 @@ public class RulesServiceTest {
             spyRulesService.deepCheck(node, document);
         });
 
-        // Vérifiez que applySurroundedContents a été appelé et a déclenché l'exception
         verify(spyRulesService, times(1)).applySurroundedContents(any(Node.class), any(Document.class));
     }
 
     @Test
+    // Vérifie que les contenus entourés de guillemets sont correctement transformés
     public void testApplySurroundedContents_Success() throws Exception {
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
 
-        // Créez un élément parent
         Element parent = document.createElement("parent");
         document.appendChild(parent);
 
-        // Créez un nœud texte avec des guillemets et ajoutez-le au parent
         Node node = document.createTextNode("Some text with «quotes».");
         parent.appendChild(node);
 
         RulesService spyRulesService = Mockito.spy(rulesService);
         spyRulesService.applySurroundedContents(node, document);
 
-        // Vérifiez si la méthode replaceChild a été appelée
         verify(spyRulesService, times(1)).applySurroundedContents(any(Node.class), any(Document.class));
 
-        // Vérifiez que le nœud a été remplacé par un fragment avec l'élément <q>
         assertEquals("Some text with", parent.getFirstChild().getTextContent());
         assertEquals("containsQuotes", ((Element) parent.getChildNodes().item(1)).getAttribute("class"));
         assertEquals("«quotes»", parent.getChildNodes().item(1).getTextContent());
@@ -208,14 +199,13 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors de l'application des contenus entourés
     public void testApplySurroundedContents_Exception() throws Exception {
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
         Node node = document.createTextNode("Some text with «quotes».");
 
-        // Créez une exception pour le test
         RulesService spyRulesService = Mockito.spy(rulesService);
         doThrow(new CustomAppException("Test exception")).when(spyRulesService).applySurroundedContents(any(Node.class), any(Document.class));
 
@@ -223,10 +213,10 @@ public class RulesServiceTest {
             spyRulesService.applySurroundedContents(node, document);
         });
     }
-    // Nouveau test pour replaceBoldWithQuote - cas de réussite
+
     @Test
+    // Vérifie que les balises <b> sont correctement remplacées par des balises <q>
     public void testReplaceBoldWithQuote_Success() throws Exception {
-        // Simulation du document XML avec balises <b>
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
@@ -240,7 +230,6 @@ public class RulesServiceTest {
         RulesService spyRulesService = Mockito.spy(rulesService);
         spyRulesService.replaceBoldWithQuote(document);
 
-        // Vérifiez que la balise <b> a été remplacée par une balise <q>
         NodeList qNodes = document.getElementsByTagName("q");
         assertEquals(1, qNodes.getLength());
         assertEquals("containsQuotes", ((Element) qNodes.item(0)).getAttribute("class"));
@@ -248,13 +237,12 @@ public class RulesServiceTest {
     }
 
     @Test
+    // Vérifie que CustomAppException est lancée si une exception survient lors du remplacement des balises <b> par <q>
     public void testReplaceBoldWithQuote_Exception() throws Exception {
-        // Simulation du document XML
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
 
-        // Créez une exception pour le test
         RulesService spyRulesService = Mockito.spy(rulesService);
         doThrow(new CustomAppException("Test exception")).when(spyRulesService).replaceBoldWithQuote(any(Document.class));
 
