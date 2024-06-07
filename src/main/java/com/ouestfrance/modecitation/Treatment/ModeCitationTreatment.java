@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 @Log4j2
 public class ModeCitationTreatment {
 
-    @Value("${input.xml.path}")
-    private String inputXmlPath;
+    @Value("${input.xml.source}")
+    private String inputXmlSource;
 
     @Value("${output.xml.path}")
     private String outputXmlPath;
@@ -35,8 +35,8 @@ public class ModeCitationTreatment {
             var allRulesNode = rulesService.readRules(rulesJsonPath);
             log.info("Rules JSON content: {}", allRulesNode != null ? allRulesNode.toString() : "null");
 
-            log.info("Reading XML content from: {}", inputXmlPath);
-            var document = xmlService.loadDocument(inputXmlPath);
+            log.info("Reading XML content from: {}", inputXmlSource);
+            var document = xmlService.loadDocument(inputXmlSource);
             log.info("Loaded XML Document content: {}", document != null ? xmlService.documentToString(document) : "null");
 
             log.info("Applying rules to the document");

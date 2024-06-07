@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mockito;
 import org.w3c.dom.Document;
-import org.w3c.dom.DocumentFragment;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -33,7 +32,7 @@ public class XmlServiceTest {
     }
 
     @Test
-    public void testLoadDocument_Success() throws Exception {
+    public void testLoadDocumentFromFile_Success() throws Exception {
         // Création d'un fichier XML temporaire
         Path xmlFile = tempDir.resolve("test.xml");
         String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
@@ -44,26 +43,66 @@ public class XmlServiceTest {
     }
 
     @Test
-    public void testLoadDocument_FileNotFound() {
+    public void testLoadDocumentFromURL_Success() throws Exception {
+        // Mock URL content
+        String url = "http://example.com/test.xml";
+        String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
+
+        XmlService spyXmlService = Mockito.spy(xmlService);
+        doReturn(xmlContent).when(spyXmlService).readXMLFromURL(url);
+
+        Document document = spyXmlService.loadDocument(url);
+        assertNotNull(document);
+    }
+
+    @Test
+    public void testLoadDocumentFromFile_Exception() {
         assertThrows(CustomAppException.class, () -> {
             xmlService.loadDocument("invalid_path.xml");
         });
     }
 
     @Test
-    public void testLoadDocument_Exception() throws Exception {
+    public void testLoadDocumentFromURL_Exception() throws Exception {
+        String url = "http://example.com/test.xml";
+
         XmlService spyXmlService = Mockito.spy(xmlService);
-        doThrow(new IOException("Test exception")).when(spyXmlService).readXMLFile(anyString());
+        doThrow(new IOException("Test exception")).when(spyXmlService).readXMLFromURL(url);
 
         assertThrows(CustomAppException.class, () -> {
-            spyXmlService.loadDocument(tempDir.resolve("test.xml").toString());
+            spyXmlService.loadDocument(url);
         });
     }
 
     @Test
-    public void testReadXMLFile_Exception() {
+    public void testReadXMLFromFile_Exception() {
         assertThrows(IOException.class, () -> {
-            xmlService.readXMLFile("invalid_path.xml");
+            xmlService.readXMLFromFile("invalid_path.xml");
+        });
+    }
+
+    @Test
+    public void testReadXMLFromURL_Success() throws Exception {
+        String url = "http://example.com/test.xml";
+        String xmlContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?><doc></doc>";
+
+        XmlService spyXmlService = Mockito.spy(xmlService);
+        doReturn(xmlContent).when(spyXmlService).readXMLFromURL(url);
+
+        String result = spyXmlService.readXMLFromURL(url);
+        assertNotNull(result);
+        assertEquals(xmlContent, result);
+    }
+
+    @Test
+    public void testReadXMLFromURL_Exception() throws IOException {
+        String url = "http://example.com/test.xml";
+
+        XmlService spyXmlService = Mockito.spy(xmlService);
+        doThrow(new IOException("Test exception")).when(spyXmlService).readXMLFromURL(url);
+
+        assertThrows(IOException.class, () -> {
+            spyXmlService.readXMLFromURL(url);
         });
     }
 

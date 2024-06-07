@@ -39,7 +39,7 @@ public class ModeCitationTreatmentTest {
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
 
-        injectPrivateField(modeCitationTreatment, "inputXmlPath", tempDir.resolve("input.xml").toString());
+        injectPrivateField(modeCitationTreatment, "inputXmlSource", tempDir.resolve("input.xml").toString());
         injectPrivateField(modeCitationTreatment, "outputXmlPath", tempDir.resolve("output.xml").toString());
         injectPrivateField(modeCitationTreatment, "rulesJsonPath", tempDir.resolve("rules.json").toString());
     }

@@ -18,6 +18,11 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.charset.StandardCharsets;
+import java.nio.charset.StandardCharsets;
+
 @Service
 @Log4j2
 @Setter
@@ -25,10 +30,10 @@ public class XmlService {
 
     private TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
-    public Document loadDocument(String filePath) throws CustomAppException {
-        log.info("Reading XML content from: {}", filePath);
+    public Document loadDocument(String source) throws CustomAppException {
+        log.info("Reading XML content from: {}", source);
         try {
-            String xmlContent = readXMLFile(filePath);
+            String xmlContent = readXMLFromSource(source);
             return loadXMLFromString(xmlContent);
         } catch (IOException | SAXException | ParserConfigurationException e) {
             log.error("Error loading XML document", e);
@@ -36,7 +41,16 @@ public class XmlService {
         }
     }
 
-    public String readXMLFile(String filePath) throws IOException {
+    public String readXMLFromSource(String source) throws IOException {
+        log.info("Reading XML content from: {}", source);
+        if (source.startsWith("http://") || source.startsWith("https://")) {
+            return readXMLFromURL(source);
+        } else {
+            return readXMLFromFile(source);
+        }
+    }
+
+    public String readXMLFromFile(String filePath) throws IOException {
         log.info("Reading XML file: {}", filePath);
         try (InputStream inputStream = new FileInputStream(new File(filePath));
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
@@ -48,6 +62,22 @@ public class XmlService {
             return content.toString();
         } catch (IOException e) {
             log.error("Error reading XML file", e);
+            throw e;
+        }
+    }
+
+    public String readXMLFromURL(String urlString) throws IOException {
+        log.info("Reading XML from URL: {}", urlString);
+        try (InputStream inputStream = new URL(urlString).openStream();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            return content.toString();
+        } catch (IOException e) {
+            log.error("Error reading XML from URL", e);
             throw e;
         }
     }
