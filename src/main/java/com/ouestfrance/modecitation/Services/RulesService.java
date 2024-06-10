@@ -61,7 +61,7 @@ public class RulesService {
                 JsonNode xpathNode = ruleNode.get("xpath");
                 if (xpathNode != null) {
                     log.info("Application de la règle avec xpath: {}", xpathNode.asText());
-                    applyRule(document, xpathNode.asText());
+                    applyOneRule(document, xpathNode.asText());
                 } else {
                     log.warn("Règle sans xpath: {}", ruleNode);
                 }
@@ -74,7 +74,7 @@ public class RulesService {
     }
 
     //Applique une règle spécifique au document XML
-    public void applyRule(Document document, String xpath) throws CustomAppException {
+    public void applyOneRule(Document document, String xpath) throws CustomAppException {
         try {
             log.info("Application de xpath: {}", xpath);
             XPath xPath = XPathFactory.newInstance().newXPath();
@@ -91,7 +91,7 @@ public class RulesService {
         }
     }
 
-    //Effectue une vérification approfondie du nœud et de ses enfants
+    //Effectue une vérification approfondie du nœud et de ses enfants (si + de 1 paire de guillemets dans le meme texte par exemple)
     public void deepCheck(Node node, Document document) throws CustomAppException {
         try {
             if (node.getNodeType() == Node.TEXT_NODE) {
@@ -154,7 +154,6 @@ public class RulesService {
         }
     }
 
-    //Remplace les balises <b> par des balises <q> avec une classe spécifique
     public void replaceBoldWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
@@ -163,15 +162,31 @@ public class RulesService {
 
             for (int i = 0; i < boldNodes.getLength(); i++) {
                 Node boldNode = boldNodes.item(i);
-                Element qElement = document.createElement("q");
-                qElement.setAttribute("class", "containsQuotes");
+                String boldTextContent = boldNode.getTextContent().trim();
 
-                while (boldNode.hasChildNodes()) {
-                    qElement.appendChild(boldNode.getFirstChild());
+                // Vérifie si le texte commence et se termine par les guillemets français
+                if (boldTextContent.startsWith("«") && boldTextContent.endsWith("»")) {
+                    Element qElement = document.createElement("q");
+                    qElement.setAttribute("class", "containsQuotes");
+
+                    while (boldNode.hasChildNodes()) {
+                        qElement.appendChild(boldNode.getFirstChild());
+                    }
+
+                    boldNode.getParentNode().replaceChild(qElement, boldNode);
+                    log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", boldTextContent);
+                } else {
+                    // Si le texte ne commence pas et ne se termine pas par les guillemets français,
+                    // retire simplement la balise <b> et conserve son contenu textuel
+                    DocumentFragment fragment = document.createDocumentFragment();
+
+                    while (boldNode.hasChildNodes()) {
+                        fragment.appendChild(boldNode.getFirstChild());
+                    }
+
+                    boldNode.getParentNode().replaceChild(fragment, boldNode);
+                    log.info("Balise <b> supprimée autour du texte: {}", boldTextContent);
                 }
-
-                boldNode.getParentNode().replaceChild(qElement, boldNode);
-                log.info("Balise <b> remplacée par <q class=\"containsQuotes\">");
             }
         } catch (Exception e) {
             log.error("Erreur lors du remplacement de <b> par <q>", e);

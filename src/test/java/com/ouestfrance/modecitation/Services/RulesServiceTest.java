@@ -83,11 +83,11 @@ public class RulesServiceTest {
         Document document = builder.newDocument();
 
         RulesService spyRulesService = Mockito.spy(rulesService);
-        doNothing().when(spyRulesService).applyRule(any(Document.class), anyString());
+        doNothing().when(spyRulesService).applyOneRule(any(Document.class), anyString());
 
         spyRulesService.applyRules(document, rulesNode);
 
-        verify(spyRulesService, times(1)).applyRule(any(Document.class), eq("//test"));
+        verify(spyRulesService, times(1)).applyOneRule(any(Document.class), eq("//test"));
     }
 
     @Test
@@ -107,7 +107,7 @@ public class RulesServiceTest {
 
         spyRulesService.applyRules(document, rulesNode);
 
-        verify(spyRulesService, times(0)).applyRule(any(Document.class), anyString());
+        verify(spyRulesService, times(0)).applyOneRule(any(Document.class), anyString());
     }
 
     @Test
@@ -124,13 +124,13 @@ public class RulesServiceTest {
         Document document = builder.newDocument();
 
         RulesService spyRulesService = Mockito.spy(rulesService);
-        doThrow(new RuntimeException("Test exception")).when(spyRulesService).applyRule(any(Document.class), anyString());
+        doThrow(new RuntimeException("Test exception")).when(spyRulesService).applyOneRule(any(Document.class), anyString());
 
         assertThrows(CustomAppException.class, () -> {
             spyRulesService.applyRules(document, rulesNode);
         });
 
-        verify(spyRulesService, times(1)).applyRule(any(Document.class), eq("//test"));
+        verify(spyRulesService, times(1)).applyOneRule(any(Document.class), eq("//test"));
     }
 
     @Test
@@ -146,7 +146,7 @@ public class RulesServiceTest {
         doThrow(new RuntimeException("Test exception")).when(spyRulesService).deepCheck(any(Node.class), any(Document.class));
 
         assertThrows(CustomAppException.class, () -> {
-            spyRulesService.applyRule(document, "//test");
+            spyRulesService.applyOneRule(document, "//test");
         });
 
         verify(spyRulesService, times(1)).deepCheck(any(Node.class), any(Document.class));
