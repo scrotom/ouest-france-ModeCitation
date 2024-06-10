@@ -94,6 +94,7 @@ public class RulesService {
     //Effectue une vérification approfondie du nœud et de ses enfants (si + de 1 paire de guillemets dans le meme texte par exemple)
     public void deepCheck(Node node, Document document) throws CustomAppException {
         try {
+            log.info("Début de deepCheck pour le nœud : {}", node.getNodeName());
             if (node.getNodeType() == Node.TEXT_NODE) {
                 applySurroundedContents(node, document);
             } else if (node.getNodeType() == Node.ELEMENT_NODE || node.getNodeType() == Node.DOCUMENT_NODE) {
@@ -114,23 +115,26 @@ public class RulesService {
             String textContent = node.getTextContent();
             String regex = "«[^«]*?»";
             Matcher matcher = Pattern.compile(regex).matcher(textContent);
+
+            int lastIndex = 0;
+            Node parentNode = node.getParentNode();
+
+            // Vérifie si le parentNode est null avant de l'utiliser
+            if (parentNode == null) {
+                return;
+            }
+
+            DocumentFragment fragment = document.createDocumentFragment();
+
             while (matcher.find()) {
                 String match = matcher.group();
                 log.info("Citation trouvée: {}", match);
                 int start = matcher.start();
                 int end = matcher.end();
 
-                Node parentNode = node.getParentNode();
-
-                // Vérifie si le parentNode est null avant de l'utiliser
-                if (parentNode == null || "q".equals(parentNode.getNodeName())) {
-                    return;
-                }
-
-                DocumentFragment fragment = document.createDocumentFragment();
-                String before = textContent.substring(0, start).trim();
+                String before = textContent.substring(lastIndex, start);
                 String inside = textContent.substring(start, end);
-                String after = textContent.substring(end).trim();
+                lastIndex = end;
 
                 if (!before.isEmpty()) {
                     fragment.appendChild(document.createTextNode(before));
@@ -140,19 +144,21 @@ public class RulesService {
                 q.setAttribute("class", "containsQuotes");
                 q.appendChild(document.createTextNode(inside));
                 fragment.appendChild(q);
-
-                if (!after.isEmpty()) {
-                    fragment.appendChild(document.createTextNode(after));
-                }
-
-                parentNode.replaceChild(fragment, node);
-                log.info("Balise <q> appliquée autour du texte: {}", match);
             }
+
+            String after = textContent.substring(lastIndex);
+            if (!after.isEmpty()) {
+                fragment.appendChild(document.createTextNode(after));
+            }
+
+            parentNode.replaceChild(fragment, node);
+            log.info("Balise <q> appliquée autour du texte: {}", textContent);
         } catch (Exception e) {
             log.error("Erreur lors de l'application des contenus entourés", e);
             throw new CustomAppException("Erreur lors de l'application des contenus entourés", e);
         }
     }
+
 
     public void replaceBoldWithQuote(Document document) throws CustomAppException {
         try {
