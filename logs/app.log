@@ -6214,3 +6214,1194 @@ display: none;
 		</texte>
 	</article>
 </doc>
+2024-06-11 16:40:03  [ModeCitationApplication]  INFO   logStarting - Starting ModeCitationApplication using Java 17.0.11 with PID 16736 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-11 16:40:03  [ModeCitationApplication]  INFO   logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 16:40:04  [ModeCitationApplication]  INFO   logStarted - Started ModeCitationApplication in 0.883 seconds (process running for 2.156)
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Démarrage de applyQuoteMode
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture des règles depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu JSON des règles : [{"desc":"les paragraphes par defaut","xpath":"//texte/p[not(@class) or not(string-length(@class))]/text()"},{"desc":"les paragraphes de style 'Texte sans alinéa'","xpath":"//texte/p[@class='textesansalinea']/text()"},{"desc":"les paragraphes de style 'Texte alinéa'","xpath":"//texte/p[@class='textealinea']/text()"},{"desc":"les paragraphes de style 'Texte'","xpath":"//texte/p[@class='texte']/text()"}]
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:40:04  [XmlService]  INFO   loadDocument - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:40:04  [XmlService]  INFO   readXMLFromSource - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:40:04  [XmlService]  INFO   readXMLFromFile - Lecture du fichier XML : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:40:04  [XmlService]  INFO   loadXMLFromString - Chargement du contenu XML depuis une chaîne de caractères
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu du document XML chargé : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Application des règles au document
+2024-06-11 16:40:04  [RulesService]  INFO   replaceBoldWithQuote - Nombre de nœuds <b> trouvés: 0
+2024-06-11 16:40:04  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[not(@class) or not(string-length(@class))]/text(): 20
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma 
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma 
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud:  
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma 
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma 
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha «Beta Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma»
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma»
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma Delta Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:40:04  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma Delta Epsilon
+2024-06-11 16:40:04  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='textesansalinea']/text(): 0
+2024-06-11 16:40:04  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='textealinea']/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='textealinea']/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='textealinea']/text(): 0
+2024-06-11 16:40:04  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='texte']/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='texte']/text()
+2024-06-11 16:40:04  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='texte']/text(): 0
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu du document XML modifié avant sauvegarde : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Enregistrement du document modifié dans : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-11 16:40:04  [XmlService]  INFO   saveDocumentToFile - Enregistrement du document dans le fichier : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Fin de applyQuoteMode
+2024-06-11 16:40:04  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu final du document XML après sauvegarde : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:43:48  [ModeCitationApplication]  INFO   logStarting - Starting ModeCitationApplication using Java 17.0.11 with PID 15140 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-11 16:43:48  [ModeCitationApplication]  INFO   logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 16:43:48  [ModeCitationApplication]  INFO   logStarted - Started ModeCitationApplication in 1.238 seconds (process running for 3.024)
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Démarrage de applyQuoteMode
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture des règles depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu JSON des règles : [{"desc":"les paragraphes par defaut","xpath":"//texte/p[not(@class) or not(string-length(@class))]/text()"},{"desc":"les paragraphes de style 'Texte sans alinéa'","xpath":"//texte/p[@class='textesansalinea']/text()"},{"desc":"les paragraphes de style 'Texte alinéa'","xpath":"//texte/p[@class='textealinea']/text()"},{"desc":"les paragraphes de style 'Texte'","xpath":"//texte/p[@class='texte']/text()"}]
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:43:49  [XmlService]  INFO   loadDocument - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:43:49  [XmlService]  INFO   readXMLFromSource - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:43:49  [XmlService]  INFO   readXMLFromFile - Lecture du fichier XML : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:43:49  [XmlService]  INFO   loadXMLFromString - Chargement du contenu XML depuis une chaîne de caractères
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu du document XML chargé : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Application des règles au document
+2024-06-11 16:43:49  [RulesService]  INFO   replaceBoldWithQuote - Nombre de nœuds <b> trouvés: 0
+2024-06-11 16:43:49  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[not(@class) or not(string-length(@class))]/text(): 20
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma 
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma 
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud:  
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma 
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma 
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha «Beta Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma»
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma»
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma Delta Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:43:49  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma Delta Epsilon
+2024-06-11 16:43:49  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='textesansalinea']/text(): 0
+2024-06-11 16:43:49  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='textealinea']/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='textealinea']/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='textealinea']/text(): 0
+2024-06-11 16:43:49  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='texte']/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='texte']/text()
+2024-06-11 16:43:49  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='texte']/text(): 0
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu du document XML modifié avant sauvegarde : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Enregistrement du document modifié dans : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-11 16:43:49  [XmlService]  INFO   saveDocumentToFile - Enregistrement du document dans le fichier : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Fin de applyQuoteMode
+2024-06-11 16:43:49  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu final du document XML après sauvegarde : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:44:12  [ModeCitationApplication]  INFO   logStarting - Starting ModeCitationApplication using Java 17.0.11 with PID 15836 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-11 16:44:12  [ModeCitationApplication]  INFO   logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 16:44:12  [ModeCitationApplication]  INFO   logStarted - Started ModeCitationApplication in 1.353 seconds (process running for 3.755)
+2024-06-11 16:44:12  [ModeCitationTreatment]  INFO   applyQuoteMode - Démarrage de applyQuoteMode
+2024-06-11 16:44:12  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture des règles depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu JSON des règles : [{"desc":"les paragraphes par defaut","xpath":"//texte/p[not(@class) or not(string-length(@class))]/text()"},{"desc":"les paragraphes de style 'Texte sans alinéa'","xpath":"//texte/p[@class='textesansalinea']/text()"},{"desc":"les paragraphes de style 'Texte alinéa'","xpath":"//texte/p[@class='textealinea']/text()"},{"desc":"les paragraphes de style 'Texte'","xpath":"//texte/p[@class='texte']/text()"}]
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:44:13  [XmlService]  INFO   loadDocument - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:44:13  [XmlService]  INFO   readXMLFromSource - Lecture du contenu XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:44:13  [XmlService]  INFO   readXMLFromFile - Lecture du fichier XML : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-11 16:44:13  [XmlService]  INFO   loadXMLFromString - Chargement du contenu XML depuis une chaîne de caractères
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu du document XML chargé : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Application des règles au document
+2024-06-11 16:44:13  [RulesService]  INFO   replaceBoldWithQuote - Nombre de nœuds <b> trouvés: 0
+2024-06-11 16:44:13  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[not(@class) or not(string-length(@class))]/text(): 20
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma 
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma 
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud:  
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma 
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma 
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha «Beta Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma»
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma»
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha 
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud:  Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte:  Gamma
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha «Beta «Gamma» Delta» Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Citation imbriquée détectée, aucun traitement appliqué.
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Contenu du nœud: Alpha Beta Gamma Delta Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   deepCheck - Début de deepCheck pour le nœud : #text
+2024-06-11 16:44:13  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte: Alpha Beta Gamma Delta Epsilon
+2024-06-11 16:44:13  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='textesansalinea']/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='textesansalinea']/text(): 0
+2024-06-11 16:44:13  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='textealinea']/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='textealinea']/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='textealinea']/text(): 0
+2024-06-11 16:44:13  [RulesService]  INFO   applyRules - Application de la règle avec xpath: //texte/p[@class='texte']/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Application de xpath: //texte/p[@class='texte']/text()
+2024-06-11 16:44:13  [RulesService]  INFO   applyOneRule - Nombre de nœuds trouvés pour XPath //texte/p[@class='texte']/text(): 0
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu du document XML modifié avant sauvegarde : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Enregistrement du document modifié dans : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-11 16:44:13  [XmlService]  INFO   saveDocumentToFile - Enregistrement du document dans le fichier : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Fin de applyQuoteMode
+2024-06-11 16:44:13  [ModeCitationTreatment]  INFO   applyQuoteMode - Contenu final du document XML après sauvegarde : <?xml version="1.0" encoding="utf-8" standalone="no"?><doc xml:lang="fr">
+	<article>
+		<tetiere channel="!ouest-france.fr,!voilesetvoiliers.com,!Edition du Soir" id="RR71SZw7qmillggYooTvn9O">
+			<p>
+				<?EM-dummyText?>
+			</p>
+		</tetiere>
+		<titraille id="R1lckoz5ItXhZwnQatvBnnJ">
+			<titre>
+				<p xsm-preserve="true">
+					<?EM-dummyText Insérer le titre ici - 100 car ?>
+				</p>
+			</titre>
+			<accroche>
+				<p>
+					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+				</p>
+			</accroche>
+		</titraille>
+		<photo-groupe id="R1N78GKReJMPDeV7WyZHc9N">
+			<photo class="normal" dtxInsert="image - block" id="RVNtIPRGRYXBmnEbPtiGgNO" type="principale" xsm-preserve="true"/>
+			<photo-legende id="RP1ORyFr0H65KULYjEshgyH">
+				<p>
+					<?EM-dummyText Insérer la légende ici ?>
+					<ld pattern=" "/>
+					<credit>
+						<?EM-dummyText Crédit ?>
+					</credit>
+				</p>
+			</photo-legende>
+		</photo-groupe>
+		<media-groupe/>
+		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
+
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
+			<signature xsm-preserve="true">JM Bayeux.</signature>
+		</texte>
+	</article>
+</doc>

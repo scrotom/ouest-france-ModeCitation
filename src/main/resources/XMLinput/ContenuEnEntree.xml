@@ -32,16 +32,72 @@
 		</photo-groupe>
 		<media-groupe/>
 		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
-			<p>Ivan Ljubicic, «directeur «du haut niveau» à la Fédération française» de tennis (FFT) tire mercredi un bilan forcément peu glorieux de Roland-Garros 2024, mais demande du temps et a confiance dans les générations montantes.</p>
-			<p>Q: Quel bilan «tirez-vous <b>exemple de texte</b> de ce Roland-Garros» 2024 ?</p>
 
-			<p>Q: Quel bilan «tirez-vous <b>«exemple de texte»</b> de ce Roland-Garros» 2024 ?</p>
+			<!-- Un paragraphe, sans quote -->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
+			<p>Alpha Beta Gamma</p>
 
-			<p>Q: Quel bilan <b>«tirez-vous <b>«exemple de texte»</b> de ce Roland-Garros»</b> 2024 ?</p>
+			<!-- Un paragraphe, une quote -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
 
-			<p>R: «Corentin Moutet» 10, ça, «on ne peut pas savoir.» Mais le talent «et le potentiel sont là.»</p>
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
 
-			<p>Q: Et «chez» les «juniors» ?</p>
+			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
+			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+
+
+
+
+			<!-- Un paragraphe, une quote non fini-->
+			<!-- Resultat attendu : <p>Alpha «Beta Gamma</p> ✅-->
+			<p>Alpha «Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
+			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
+			<p>Alpha Beta Gamma</p>
+
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
+			<!-- Resultat attendu : ? -->
+			<p>Alpha Beta Gamma Delta Epsilon</p>
+
 			<signature xsm-preserve="true">JM Bayeux.</signature>
 		</texte>
 	</article>
