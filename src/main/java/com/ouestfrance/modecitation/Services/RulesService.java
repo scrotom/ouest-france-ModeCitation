@@ -56,6 +56,7 @@ public class RulesService {
     public void applyRules(Document document, JsonNode allRulesNode) throws CustomAppException {
         try {
             Iterator<JsonNode> rulesIterator = allRulesNode.elements();
+            replaceBoldWithQuote(document);
             while (rulesIterator.hasNext()) {
                 JsonNode ruleNode = rulesIterator.next();
                 JsonNode xpathNode = ruleNode.get("xpath");
@@ -66,7 +67,6 @@ public class RulesService {
                     log.warn("Règle sans xpath: {}", ruleNode);
                 }
             }
-            replaceBoldWithQuote(document);
         } catch (Exception e) {
             log.error("Erreur lors de l'application des règles au document", e);
             throw new CustomAppException("Erreur lors de l'application des règles au document", e);
@@ -91,11 +91,17 @@ public class RulesService {
         }
     }
 
-    //Effectue une vérification approfondie du nœud et de ses enfants (si + de 1 paire de guillemets dans le meme texte par exemple)
+    // Effectue une vérification approfondie du nœud et de ses enfants (si + de 1 paire de guillemets dans le même texte par exemple)
     public void deepCheck(Node node, Document document) throws CustomAppException {
         try {
             log.info("Début de deepCheck pour le nœud : {}", node.getNodeName());
             if (node.getNodeType() == Node.TEXT_NODE) {
+                String textContent = node.getTextContent();
+                // Vérifie si le texte contient une citation imbriquée
+                if (containsNestedQuotes(textContent)) {
+                    log.info("Citation imbriquée détectée, aucun traitement appliqué.");
+                    return;
+                }
                 applySurroundedContents(node, document);
             } else if (node.getNodeType() == Node.ELEMENT_NODE || node.getNodeType() == Node.DOCUMENT_NODE) {
                 NodeList childNodes = node.getChildNodes();
@@ -109,7 +115,14 @@ public class RulesService {
         }
     }
 
-    //Applique des balises <q> autour du contenu textuel entouré de guillemets français
+    // Vérifie si une chaîne de texte contient des citations imbriquées
+    private boolean containsNestedQuotes(String text) {
+        Pattern nestedQuotePattern = Pattern.compile("«[^«]*«.*»[^«]*?»");
+        Matcher matcher = nestedQuotePattern.matcher(text);
+        return matcher.find();
+    }
+
+    // Applique des balises <q> autour du contenu textuel entouré de guillemets français
     public void applySurroundedContents(Node node, Document document) throws CustomAppException {
         try {
             String textContent = node.getTextContent();
@@ -133,7 +146,7 @@ public class RulesService {
                 int end = matcher.end();
 
                 String before = textContent.substring(lastIndex, start);
-                String inside = textContent.substring(start, end);
+                String inside = textContent.substring(start, end); // Inclut les guillemets
                 lastIndex = end;
 
                 if (!before.isEmpty()) {
