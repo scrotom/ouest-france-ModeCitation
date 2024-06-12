@@ -52,8 +52,8 @@ public class RulesService {
         try {
             logDocumentState("Contenu initial du document XML", document);
 
-            replaceBoldWithQuote(document);
-            logDocumentState("Contenu du document XML après replaceBoldWithQuote", document);
+            replaceFormattingWithQuote(document);
+            logDocumentState("Contenu du document XML après replaceFormattingWithQuote", document);
 
             applyQuoteModeRules(document, allRulesNode);
             logDocumentState("Contenu du document XML après applyQuoteModeRules", document);
@@ -215,7 +215,7 @@ public class RulesService {
         }
     }
 
-    public void replaceBoldWithQuote(Document document) throws CustomAppException {
+    public void replaceFormattingWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList pNodes = (NodeList) xPath.evaluate("//p", document, XPathConstants.NODESET);
@@ -231,13 +231,13 @@ public class RulesService {
                     continue;
                 }
 
-                Pattern pattern = Pattern.compile("«([^«]*)<b>([^«]*)</b>([^«]*)»");
+                Pattern pattern = Pattern.compile("«([^«]*)<(b|i|u)>([^«]*)</\\2>([^«]*)»");
                 Matcher matcher = pattern.matcher(pContent);
 
                 if (matcher.find()) {
                     String beforeQuote = pContent.substring(0, matcher.start());
                     String afterQuote = pContent.substring(matcher.end());
-                    String quoteContent = matcher.group(1) + matcher.group(2) + matcher.group(3);
+                    String quoteContent = matcher.group(1) + matcher.group(3) + matcher.group(4);
 
                     Element qElement = document.createElement("q");
                     qElement.setAttribute("class", "containsQuotes");
@@ -255,43 +255,43 @@ public class RulesService {
                     pNode.setTextContent("");
                     pNode.appendChild(fragment);
 
-                    log.info("Balise <b> supprimée et <q> ajoutée dans le texte: {}", getTextContentWithTags(pNode));
+                    log.info("Balises <b>, <i> ou <u> supprimées et <q> ajoutée dans le texte: {}", getTextContentWithTags(pNode));
                 } else {
-                    processBoldTagsOutsideQuotes(pNode);
+                    processFormattingTagsOutsideQuotes(pNode);
                 }
             }
         } catch (Exception e) {
-            log.error("Erreur lors du remplacement de <b> par <q>", e);
-            throw new CustomAppException("Erreur lors du remplacement de <b> par <q>", e);
+            log.error("Erreur lors du remplacement des balises de formatage par <q>", e);
+            throw new CustomAppException("Erreur lors du remplacement des balises de formatage par <q>", e);
         }
     }
 
-    private void processBoldTagsOutsideQuotes(Node pNode) throws CustomAppException {
+    private void processFormattingTagsOutsideQuotes(Node pNode) throws CustomAppException {
         try {
-            NodeList boldNodes = pNode.getChildNodes();
-            for (int i = 0; i < boldNodes.getLength(); i++) {
-                Node boldNode = boldNodes.item(i);
-                if (boldNode.getNodeName().equals("b")) {
-                    String boldTextContent = boldNode.getTextContent().trim();
+            NodeList formattingNodes = pNode.getChildNodes();
+            for (int i = 0; i < formattingNodes.getLength(); i++) {
+                Node formattingNode = formattingNodes.item(i);
+                if (formattingNode.getNodeName().matches("b|i|u")) {
+                    String formattingTextContent = formattingNode.getTextContent().trim();
 
-                    if (boldTextContent.startsWith("«") && boldTextContent.endsWith("»") && !containsMultipleQuotesInSameB(boldTextContent)) {
+                    if (formattingTextContent.startsWith("«") && formattingTextContent.endsWith("»") && !containsMultipleQuotesInSameB(formattingTextContent)) {
                         Element qElement = pNode.getOwnerDocument().createElement("q");
                         qElement.setAttribute("class", "containsQuotes");
 
-                        while (boldNode.hasChildNodes()) {
-                            qElement.appendChild(boldNode.getFirstChild());
+                        while (formattingNode.hasChildNodes()) {
+                            qElement.appendChild(formattingNode.getFirstChild());
                         }
 
-                        boldNode.getParentNode().replaceChild(qElement, boldNode);
-                        log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", boldTextContent);
+                        formattingNode.getParentNode().replaceChild(qElement, formattingNode);
+                        log.info("Balise <{}> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", formattingNode.getNodeName(), formattingTextContent);
                     } else {
-                        log.info("Balise <b> conservée autour du texte: {}", boldTextContent);
+                        log.info("Balise <{}> conservée autour du texte: {}", formattingNode.getNodeName(), formattingTextContent);
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("Erreur lors du traitement des balises <b> en dehors des citations", e);
-            throw new CustomAppException("Erreur lors du traitement des balises <b> en dehors des citations", e);
+            log.error("Erreur lors du traitement des balises de formatage en dehors des citations", e);
+            throw new CustomAppException("Erreur lors du traitement des balises de formatage en dehors des citations", e);
         }
     }
 
