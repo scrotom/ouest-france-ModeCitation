@@ -52,8 +52,8 @@ public class RulesService {
         try {
             logDocumentState("Contenu initial du document XML", document);
 
-            replaceFormattingTagsWithQuote(document);
-            logDocumentState("Contenu du document XML après replaceFormattingTagsWithQuote", document);
+            replaceBoldWithQuote(document);
+            logDocumentState("Contenu du document XML après replaceBoldWithQuote", document);
 
             applyQuoteModeRules(document, allRulesNode);
             logDocumentState("Contenu du document XML après applyQuoteModeRules", document);
@@ -159,7 +159,7 @@ public class RulesService {
         return matcher.find();
     }
 
-    private boolean containsMultipleQuotesInSameTag(String text) {
+    private boolean containsMultipleQuotesInSameB(String text) {
         Pattern multipleQuotesPattern = Pattern.compile("«[^«»]*?»[^«»]*«[^«»]*?»");
         Matcher matcher = multipleQuotesPattern.matcher(text);
         return matcher.find();
@@ -215,7 +215,7 @@ public class RulesService {
         }
     }
 
-    public void replaceFormattingTagsWithQuote(Document document) throws CustomAppException {
+    public void replaceBoldWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList pNodes = (NodeList) xPath.evaluate("//p", document, XPathConstants.NODESET);
@@ -231,18 +231,13 @@ public class RulesService {
                     continue;
                 }
 
-                if (containsMultipleQuotesInSameTag(pContent)) {
-                    log.info("Le nœud <p> contient plusieurs citations dans la même balise de formatage, aucun traitement appliqué.");
-                    continue;
-                }
-
-                Pattern pattern = Pattern.compile("«([^«]*)<(b|i|u)>([^«]*)</(b|i|u)>([^«]*)»");
+                Pattern pattern = Pattern.compile("«([^«]*)<b>([^«]*)</b>([^«]*)»");
                 Matcher matcher = pattern.matcher(pContent);
 
-                while (matcher.find()) {
+                if (matcher.find()) {
                     String beforeQuote = pContent.substring(0, matcher.start());
                     String afterQuote = pContent.substring(matcher.end());
-                    String quoteContent = matcher.group(1) + matcher.group(3) + matcher.group(5);
+                    String quoteContent = matcher.group(1) + matcher.group(2) + matcher.group(3);
 
                     Element qElement = document.createElement("q");
                     qElement.setAttribute("class", "containsQuotes");
@@ -260,43 +255,43 @@ public class RulesService {
                     pNode.setTextContent("");
                     pNode.appendChild(fragment);
 
-                    log.info("Balise <{}> supprimée et <q> ajoutée dans le texte: {}", matcher.group(2), getTextContentWithTags(pNode));
+                    log.info("Balise <b> supprimée et <q> ajoutée dans le texte: {}", getTextContentWithTags(pNode));
+                } else {
+                    processBoldTagsOutsideQuotes(pNode);
                 }
-
-                processBoldItalicUnderlineTagsOutsideQuotes(pNode);
             }
         } catch (Exception e) {
-            log.error("Erreur lors du remplacement de <b>, <i> ou <u> par <q>", e);
-            throw new CustomAppException("Erreur lors du remplacement de <b>, <i> ou <u> par <q>", e);
+            log.error("Erreur lors du remplacement de <b> par <q>", e);
+            throw new CustomAppException("Erreur lors du remplacement de <b> par <q>", e);
         }
     }
 
-    private void processBoldItalicUnderlineTagsOutsideQuotes(Node pNode) throws CustomAppException {
+    private void processBoldTagsOutsideQuotes(Node pNode) throws CustomAppException {
         try {
-            NodeList childNodes = pNode.getChildNodes();
-            for (int i = 0; i < childNodes.getLength(); i++) {
-                Node childNode = childNodes.item(i);
-                if (childNode.getNodeName().equals("b") || childNode.getNodeName().equals("i") || childNode.getNodeName().equals("u")) {
-                    String textContent = childNode.getTextContent().trim();
+            NodeList boldNodes = pNode.getChildNodes();
+            for (int i = 0; i < boldNodes.getLength(); i++) {
+                Node boldNode = boldNodes.item(i);
+                if (boldNode.getNodeName().equals("b")) {
+                    String boldTextContent = boldNode.getTextContent().trim();
 
-                    if (textContent.startsWith("«") && textContent.endsWith("»") && !containsMultipleQuotesInSameTag(textContent)) {
+                    if (boldTextContent.startsWith("«") && boldTextContent.endsWith("»") && !containsMultipleQuotesInSameB(boldTextContent)) {
                         Element qElement = pNode.getOwnerDocument().createElement("q");
                         qElement.setAttribute("class", "containsQuotes");
 
-                        while (childNode.hasChildNodes()) {
-                            qElement.appendChild(childNode.getFirstChild());
+                        while (boldNode.hasChildNodes()) {
+                            qElement.appendChild(boldNode.getFirstChild());
                         }
 
-                        childNode.getParentNode().replaceChild(qElement, childNode);
-                        log.info("Balise <{}> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", childNode.getNodeName(), textContent);
+                        boldNode.getParentNode().replaceChild(qElement, boldNode);
+                        log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", boldTextContent);
                     } else {
-                        log.info("Balise <{}> conservée autour du texte: {}", childNode.getNodeName(), textContent);
+                        log.info("Balise <b> conservée autour du texte: {}", boldTextContent);
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("Erreur lors du traitement des balises <b>, <i> ou <u> en dehors des citations", e);
-            throw new CustomAppException("Erreur lors du traitement des balises <b>, <i> ou <u> en dehors des citations", e);
+            log.error("Erreur lors du traitement des balises <b> en dehors des citations", e);
+            throw new CustomAppException("Erreur lors du traitement des balises <b> en dehors des citations", e);
         }
     }
 
