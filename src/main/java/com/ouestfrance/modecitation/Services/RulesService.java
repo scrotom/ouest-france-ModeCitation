@@ -225,6 +225,11 @@ public class RulesService {
                     continue;
                 }
 
+                if (containsMultipleQuotes(pContent)) {
+                    log.info("Le nœud <p> contient plusieurs citations, aucun traitement appliqué.");
+                    continue;
+                }
+
                 Pattern pattern = Pattern.compile("«([^«]*)<b>([^«]*)</b>([^«]*)»");
                 Matcher matcher = pattern.matcher(pContent);
 
@@ -287,6 +292,12 @@ public class RulesService {
             log.error("Erreur lors du traitement des balises <b> en dehors des citations", e);
             throw new CustomAppException("Erreur lors du traitement des balises <b> en dehors des citations", e);
         }
+    }
+
+    private boolean containsMultipleQuotes(String text) {
+        Pattern multipleQuotesPattern = Pattern.compile("«[^«»]*?»[^«»]*«[^«»]*?»");
+        Matcher matcher = multipleQuotesPattern.matcher(text);
+        return matcher.find();
     }
 
     private String getTextContentWithTags(Node node) {

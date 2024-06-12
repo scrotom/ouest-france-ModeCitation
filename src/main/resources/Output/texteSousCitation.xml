@@ -71,17 +71,21 @@
 			<!-- Resultat attendu : Alpha <q class="containsQuotes">«Beta»</q> <b>Gamma</b> Delta <q class="containsQuotes">«Epsilon»</q> ✅-->
 			<p>Alpha <q class="containsQuotes">«Beta»</q> <b>Gamma</b> Delta <q class="containsQuotes">«Epsilon»</q></p>
 
+			<!-- Un paragraphe deux quotes avant apres, texte sous <b>«»</b> -->
+			<!-- Resultat attendu : Alpha <q class="containsQuotes">«Beta»</q> <b>Gamma Delta Epsilon</b> zeta <q class="containsQuotes">«eta»</q> ❌-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> <b>«Gamma Delta Epsilon»</b> zeta <q class="containsQuotes">«eta»</q></p>
+
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
 			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
 
 			<!-- Un paragraphe, une quote <b>«»</b> -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
-			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+			<p><q class="containsQuotes">«Beta»</q></p>
 
 			<!-- Un paragraphe, une quote <b>«»</b>, interieur 2 quotes -->
-			<!-- Resultat attendu : <p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p> ❌-->
-			<p>Alpha <q class="containsQuotes">«Beta» Gamma «Delta»</q> Epsilon</p>
+			<!-- Resultat attendu : <p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p> ✅-->
+			<p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p>
 
 
 
