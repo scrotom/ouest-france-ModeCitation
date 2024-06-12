@@ -14,7 +14,7 @@
 			</titre>
 			<accroche>
 				<p>
-					<?EM-dummyText Insérer l'accroche ici - 500 car ?>
+					<?EM-dummyText Insérer <b>l'accroche</b> <b>«Beta»</b> ici - 500 car ?>
 				</p>
 			</accroche>
 		</titraille>
@@ -39,15 +39,15 @@
 
 			<!-- Un paragraphe, une quote -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
-			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+			<p>Alpha «Beta» Gamma</p>
 
 			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p> -->
-			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q> Epsilon</p>
+			<p>Alpha «Beta» Gamma «Delta» Epsilon</p>
 
 			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
 			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p> -->
-			<p><q class="containsQuotes">«Alpha»</q> <q class="containsQuotes">«Beta»</q> Gamma <q class="containsQuotes">«Delta»</q></p>
+			<p>«Alpha» «Beta» Gamma «Delta»</p>
 
 
 
@@ -65,15 +65,15 @@
 
 			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
 			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
-			<p>Alpha Beta Gamma</p>
+			<p>Alpha <b>Beta</b> Gamma</p>
 
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
-			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
-			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ❌-->
+			<p>Alpha «Beta <b>Gamma</b> Delta» Epsilon</p>
 
 			<!-- Un paragraphe, une quote <b>«»</b> -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
-			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+			<p>Alpha <b>«Beta»</b> Gamma</p>
 
 
 
@@ -84,19 +84,19 @@
 
 			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
 			<!-- Resultat attendu : ? -->
-			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+			<p>Alpha «Beta <b>«Gamma»</b> Delta» Epsilon</p>
 
 			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
 			<!-- Resultat attendu : ? -->
-			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+			<p>Alpha <b>«Beta «Gamma» Delta»</b> Epsilon</p>
 
 			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes -->
-			<!-- Resultat attendu : ? -->
-			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
+			<!-- Resultat attendu : Alpha «Beta «Gamma» Delta» Epsilon -->
+			<p>Alpha <b>«Beta <b>«Gamma»</b> Delta»</b> Epsilon</p>
 
-			<!-- Un paragraphe, deux quotes imbriquées, <b></b> sur les deux quotes -->
-			<!-- Resultat attendu : ? -->
-			<p>Alpha Beta Gamma Delta Epsilon</p>
+			<!-- Un paragraphe, <b></b> imbriqués -->
+			<!-- Resultat attendu : Alpha <b>Beta Gamma Delta</b> Epsilon -->
+			<p>Alpha <b>Beta <b>Gamma</b> Delta</b> Epsilon</p>
 
 			<signature xsm-preserve="true">JM Bayeux.</signature>
 		</texte>
