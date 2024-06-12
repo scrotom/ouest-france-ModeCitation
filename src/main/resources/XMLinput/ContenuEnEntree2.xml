@@ -35,15 +35,19 @@
 
 			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
 			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ❌-->
-			<p>Alpha <b>Beta</b> Gamma</p>
+			<!-- <p>Alpha <b>Beta</b> Gamma</p> -->
 
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ❌-->
 			<p>Alpha «Beta <b>Gamma</b> Delta» Epsilon</p>
 
+			<!-- Un paragraphe, une quote, <b></b> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ❌-->
+			<!-- <p>Alpha «Beta Gamma Delta» Epsilon</p> -->
+
 			<!-- Un paragraphe, une quote <b>«»</b> -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
-			<p>Alpha <b>«Beta»</b> Gamma</p>
+			<!-- <p>Alpha <b>«Beta»</b> Gamma</p> -->
 
 			<signature xsm-preserve="true">JM Bayeux.</signature>
 		</texte>

@@ -19,12 +19,22 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.DocumentFragment;
 import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,11 +62,60 @@ public class RulesService {
         }
     }
 
-    //Applique les règles à un document XML
     public void applyRules(Document document, JsonNode allRulesNode) throws CustomAppException {
         try {
-            Iterator<JsonNode> rulesIterator = allRulesNode.elements();
+            logDocumentState("Contenu initial du document XML", document);
+
             replaceBoldWithQuote(document);
+            logDocumentState("Contenu du document XML après replaceBoldWithQuote", document);
+
+            applyQuoteModeRules(document, allRulesNode);
+            logDocumentState("Contenu du document XML après applyQuoteModeRules", document);
+
+            document = reloadDocument(document);
+            logDocumentState("Contenu du document XML après rechargement", document);
+
+            applyQuoteModeRules(document, allRulesNode);
+            logDocumentState("Contenu final du document XML après deuxième applyQuoteModeRules", document);
+        } catch (Exception e) {
+            log.error("Erreur lors de l'application des règles au document", e);
+            throw new CustomAppException("Erreur lors de l'application des règles au document", e);
+        }
+    }
+
+    public void logDocumentState(String message, Document document) {
+        try {
+            String xmlString = documentToString(document);
+            log.info("{}:\n{}", message, xmlString);
+        } catch (CustomAppException e) {
+            log.error("Erreur lors de la capture de l'état du document", e);
+        }
+    }
+
+
+
+    // Recharger le document pour s'assurer que les modifications sont prises en compte
+    public Document reloadDocument(Document document) throws CustomAppException {
+        try {
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            DOMSource source = new DOMSource(document);
+            StringWriter writer = new StringWriter();
+            StreamResult result = new StreamResult(writer);
+            transformer.transform(source, result);
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            return builder.parse(new InputSource(new StringReader(writer.toString())));
+        } catch (Exception e) {
+            log.error("Erreur lors du rechargement du document XML", e);
+            throw new CustomAppException("Erreur lors du rechargement du document XML", e);
+        }
+    }
+
+    // Appliquer les règles de citation initiales
+    public void applyQuoteModeRules(Document document, JsonNode allRulesNode) throws CustomAppException {
+        try {
+            Iterator<JsonNode> rulesIterator = allRulesNode.elements();
             while (rulesIterator.hasNext()) {
                 JsonNode ruleNode = rulesIterator.next();
                 JsonNode xpathNode = ruleNode.get("xpath");
@@ -155,8 +214,11 @@ public class RulesService {
 
                 Element q = document.createElement("q");
                 q.setAttribute("class", "containsQuotes");
+                log.info("creation de l'element q");
                 q.appendChild(document.createTextNode(inside));
+                log.info("creation du text node");
                 fragment.appendChild(q);
+                log.info("append du fragment");
             }
 
             String after = textContent.substring(lastIndex);
@@ -166,13 +228,16 @@ public class RulesService {
 
             parentNode.replaceChild(fragment, node);
             log.info("Balise <q> appliquée autour du texte: {}", textContent);
+
+            // Afficher l'entièreté du document XML après modification
+            log.info("Contenu actuel du document XML :\n{}", documentToString(document));
         } catch (Exception e) {
             log.error("Erreur lors de l'application des contenus entourés", e);
             throw new CustomAppException("Erreur lors de l'application des contenus entourés", e);
         }
     }
 
-
+    // Remplacement des balises <b> par <q> ou suppression des balises <b> selon le cas
     public void replaceBoldWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
@@ -194,22 +259,123 @@ public class RulesService {
 
                     boldNode.getParentNode().replaceChild(qElement, boldNode);
                     log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", boldTextContent);
+                } else if (boldTextContent.contains("«") && boldTextContent.contains("»")) {
+                    // Si le texte contient des guillemets français, remplace tout par une seule balise <q>
+                    Element qElement = document.createElement("q");
+                    qElement.setAttribute("class", "containsQuotes");
+                    qElement.setTextContent(boldTextContent);
+                    boldNode.getParentNode().replaceChild(qElement, boldNode);
+                    log.info("Balise <b> contenant des guillemets remplacée par <q>: {}", boldTextContent);
                 } else {
-                    // Si le texte ne commence pas et ne se termine pas par les guillemets français,
-                    // retire simplement la balise <b> et conserve son contenu textuel
-                    DocumentFragment fragment = document.createDocumentFragment();
-
-                    while (boldNode.hasChildNodes()) {
-                        fragment.appendChild(boldNode.getFirstChild());
-                    }
-
-                    boldNode.getParentNode().replaceChild(fragment, boldNode);
-                    log.info("Balise <b> supprimée autour du texte: {}", boldTextContent);
+                    // Si le texte ne contient pas de guillemets français, on ne fait rien
+                    log.info("Balise <b> conservée autour du texte: {}", boldTextContent);
                 }
             }
+
+            // Appel à la méthode pour gérer les balises <b> à l'intérieur des citations
+            log.info("appel de la méthode replaceBoldInsideQuotes");
+            replaceBoldInsideQuotes(document);
+            log.info("fin de la méthode replaceBoldInsideQuotes");
+
         } catch (Exception e) {
             log.error("Erreur lors du remplacement de <b> par <q>", e);
             throw new CustomAppException("Erreur lors du remplacement de <b> par <q>", e);
         }
     }
+
+    // Méthode pour gérer les balises <b> à l'intérieur des citations
+    private void replaceBoldInsideQuotes(Document document) throws CustomAppException {
+        try {
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            NodeList pNodes = (NodeList) xPath.evaluate("//p", document, XPathConstants.NODESET);
+            for (int i = 0; i < pNodes.getLength(); i++) {
+                Node pNode = pNodes.item(i);
+                String pContent = getTextContentWithTags(pNode);
+                log.info("Traitement du nœud <p> avec contenu: {}", pContent);
+
+                if (pContent.contains("«") && pContent.contains("»")) {
+                    Pattern pattern = Pattern.compile("«([^«]*)<b>([^«]*)</b>([^«]*)»");
+                    Matcher matcher = pattern.matcher(pContent);
+
+                    if (matcher.find()) {
+                        String beforeQuote = pContent.substring(0, matcher.start());
+                        String afterQuote = pContent.substring(matcher.end());
+                        String quoteContent = matcher.group(1) + matcher.group(2) + matcher.group(3);
+
+                        log.info("Texte avant la citation: {}", beforeQuote);
+                        log.info("Texte après la citation: {}", afterQuote);
+                        log.info("Contenu de la citation: {}", quoteContent);
+
+                        Element qElement = document.createElement("q");
+                        qElement.setAttribute("class", "containsQuotes");
+                        qElement.setTextContent("«" + quoteContent + "»");
+
+                        DocumentFragment fragment = document.createDocumentFragment();
+                        if (!beforeQuote.isEmpty()) {
+                            fragment.appendChild(document.createTextNode(beforeQuote));
+                        }
+                        fragment.appendChild(qElement);
+                        if (!afterQuote.isEmpty()) {
+                            fragment.appendChild(document.createTextNode(afterQuote));
+                        }
+
+                        pNode.setTextContent(""); // Clear the current content
+                        pNode.appendChild(fragment);
+
+                        log.info("Balise <b> supprimée et <q> ajoutée dans le texte: {}", getTextContentWithTags(pNode));
+                    } else {
+                        log.info("Aucune balise <b> trouvée à l'intérieur de la citation.");
+                    }
+                } else {
+                    log.info("Le nœud <p> ne contient pas de guillemets français.");
+                }
+            }
+        } catch (Exception e) {
+            log.error("Erreur lors du traitement des balises <b> à l'intérieur des citations", e);
+            throw new CustomAppException("Erreur lors du traitement des balises <b> à l'intérieur des citations", e);
+        }
+    }
+
+    // Méthode pour obtenir le contenu texte d'un nœud avec les balises
+    private String getTextContentWithTags(Node node) {
+        StringBuilder result = new StringBuilder();
+        NodeList childNodes = node.getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            Node child = childNodes.item(i);
+            switch (child.getNodeType()) {
+                case Node.TEXT_NODE:
+                    result.append(child.getTextContent());
+                    break;
+                case Node.ELEMENT_NODE:
+                    result.append("<").append(child.getNodeName()).append(">");
+                    result.append(getTextContentWithTags(child));
+                    result.append("</").append(child.getNodeName()).append(">");
+                    break;
+            }
+        }
+        return result.toString();
+    }
+
+    // Convertir un document XML en chaîne de caractères
+    private String documentToString(Document document) throws CustomAppException {
+        try {
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            StringWriter writer = new StringWriter();
+            transformer.transform(new DOMSource(document), new StreamResult(writer));
+            return writer.toString();
+        } catch (Exception e) {
+            log.error("Erreur lors de la conversion du document en chaîne", e);
+            throw new CustomAppException("Erreur lors de la conversion du document en chaîne", e);
+        }
+    }
 }
+
+
+
+
+
+

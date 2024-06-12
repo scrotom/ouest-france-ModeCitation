@@ -39,6 +39,7 @@ public class XmlService {
         log.info("Lecture du contenu XML depuis : {}", source);
         try {
             String xmlContent = readXMLFromSource(source);
+            log.info("Contenu XML lu depuis la source :\n{}", xmlContent);
             return loadXMLFromString(xmlContent);
         } catch (IOException | SAXException | ParserConfigurationException e) {
             log.error("Erreur lors du chargement du document XML", e);
@@ -126,6 +127,7 @@ public class XmlService {
             transformer.transform(new DOMSource(document), new StreamResult(writer));
 
             String xmlContent = writer.toString().replaceFirst("\\?>", "?>\n");
+            log.info("Contenu XML à enregistrer :\n{}", xmlContent);
 
             try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath, StandardCharsets.UTF_8))) {
                 bufferedWriter.write(xmlContent);
@@ -136,15 +138,30 @@ public class XmlService {
         }
     }
 
-    //Convertit un document XML en chaîne de caractères
+    // Convertit un document XML en chaîne de caractères
     public String documentToString(Document document) throws CustomAppException {
         try {
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "no");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+
             StringWriter writer = new StringWriter();
-            transformer.transform(new DOMSource(document), new StreamResult(writer));
-            return writer.getBuffer().toString();
+            StreamResult result = new StreamResult(writer);
+            DOMSource source = new DOMSource(document);
+            transformer.transform(source, result);
+
+            String xmlString = writer.toString();
+
+            // Ajout de l'indentation appropriée après la déclaration XML
+            xmlString = xmlString.replaceFirst("\\?>", "?>\n");
+
+            log.info("Contenu XML converti en chaîne après transformation:\n{}", xmlString);
+
+            return xmlString;
         } catch (TransformerException e) {
             log.error("Erreur lors de la conversion du document en chaîne", e);
             throw new CustomAppException("Erreur lors de la conversion du document en chaîne", e);
