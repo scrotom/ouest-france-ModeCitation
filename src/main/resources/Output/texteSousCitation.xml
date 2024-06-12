@@ -63,6 +63,11 @@
 
 
 
+			<!-- gestion des balises <b></b> -->
+
+
+
+
 			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
 			<!-- Resultat attendu : <p>Alpha <b>Beta</b> Gamma</p> ✅-->
 			<p>Alpha <b>Beta</b> Gamma</p>
@@ -73,7 +78,7 @@
 
 			<!-- Un paragraphe deux quotes avant apres, texte sous <b>«»</b> -->
 			<!-- Resultat attendu : Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">Gamma</q> Delta <q class="containsQuotes">«Epsilon»</q> ✅-->
-			<p>Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">«Gamma»</q> Delta <q class="containsQuotes">«Epsilon»</q></p>
+			<p>Alpha <q class="containsQuotes">«Beta»</q> <b>«Gamma»</b> Delta <q class="containsQuotes">«Epsilon»</q></p>
 
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
@@ -85,11 +90,11 @@
 
 			<!-- Un paragraphe, deux quote <b>«»</b> -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">«Gamma»</q> Delta</p> ✅-->
-			<p>Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">«Gamma»</q> Delta</p>
+			<p>Alpha <b>«Beta»</b> <b>«Gamma»</b> Delta</p>
 
 			<!-- Un paragraphe, une quote <b>«»</b>, interieur 2 quotes -->
-			<!-- Resultat attendu : <p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p> ❌-->
-			<p>Alpha <q class="containsQuotes">«Beta» Gamma «Delta»</q> Epsilon</p>
+			<!-- Resultat attendu : <p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p> ✅-->
+			<p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p>
 
 
 
@@ -116,6 +121,136 @@
 			<!-- Un paragraphe, <b></b> imbriqués CAS IMPOSSIBLE : BALISE <b> DANS BALISE <b> ✅-->
 			<!-- Resultat attendu : Alpha <b>Beta <b>Gamma</b> Delta</b> Epsilon -->
 			<p>Alpha <b>Beta <b>Gamma</b> Delta</b> Epsilon</p>
+
+
+
+
+			<!-- gestion des balises <i></i> -->
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <i></i> -->
+			<!-- Resultat attendu : <p>Alpha <i>Beta</i> Gamma</p> ✅-->
+			<p>Alpha <i>Beta</i> Gamma</p>
+
+			<!-- Un paragraphe deux quotes avant apres, texte sous <i></i> -->
+			<!-- Resultat attendu : Alpha <q class="containsQuotes">«Beta»</q> <i>Gamma</i> Delta <q class="containsQuotes">«Epsilon»</q> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> <i>Gamma</i> Delta <q class="containsQuotes">«Epsilon»</q></p>
+
+			<!-- Un paragraphe deux quotes avant apres, texte sous <i>«»</i> -->
+			<!-- Resultat attendu : Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">Gamma</q> Delta <q class="containsQuotes">«Epsilon»</q> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> <i>«Gamma»</i> Delta <q class="containsQuotes">«Epsilon»</q></p>
+
+			<!-- Un paragraphe, une quote, <i></i> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <i>«»</i> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, deux quote <i>«»</i> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">«Gamma»</q> Delta</p> ✅-->
+			<p>Alpha <i>«Beta»</i> <i>«Gamma»</i> Delta</p>
+
+			<!-- Un paragraphe, une quote <i>«»</i>, interieur 2 quotes -->
+			<!-- Resultat attendu : <p>Alpha <i>«Beta» Gamma «Delta»</i> Epsilon</p> ✅-->
+			<p>Alpha <i>«Beta» Gamma «Delta»</i> Epsilon</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote du milieu ✅-->
+			<!-- Resultat attendu : <p>Alpha «Beta <i>«Gamma»</i> Delta» Epsilon</p> -->
+			<p>Alpha «Beta <i>«Gamma»</i> Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote externe ✅-->
+			<!-- Resultat attendu : <p>Alpha <b>«Beta «Gamma» Delta»</b> Epsilon</p> -->
+			<p>Alpha <i>«Beta «Gamma» Delta»</i> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur les deux quotes CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i>  ✅-->
+			<!-- Resultat attendu : <p>Alpha <i>«Beta <i>«Gamma»</i> Delta»</i> Epsilon</p> -->
+			<p>Alpha <i>«Beta <i>«Gamma»</i> Delta»</i> Epsilon</p>
+
+			<!-- Un paragraphe, <i></i> imbriqués CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> ✅-->
+			<!-- Resultat attendu : Alpha <i>Beta <i>Gamma</i> Delta</i> Epsilon -->
+			<p>Alpha <i>Beta <i>Gamma</i> Delta</i> Epsilon</p>
+
+
+
+
+			<!-- gestion des balises <u></u> -->
+
+
+
+
+			<!-- Un paragraphe, sans quote, texte sous <u></u> -->
+			<!-- Resultat attendu : <p>Alpha <u>Beta</u> Gamma</p> ✅-->
+			<p>Alpha <u>Beta</u> Gamma</p>
+
+			<!-- Un paragraphe deux quotes avant apres, texte sous <u></u> -->
+			<!-- Resultat attendu : Alpha <q class="containsQuotes">«Beta»</q> <u>Gamma</u> Delta <q class="containsQuotes">«Epsilon»</q> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> <u>Gamma</u> Delta <q class="containsQuotes">«Epsilon»</q></p>
+
+			<!-- Un paragraphe deux quotes avant apres, texte sous <u>«»</u> -->
+			<!-- Resultat attendu : Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">Gamma</q> Delta <q class="containsQuotes">«Epsilon»</q> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> <u>«Gamma»</u> Delta <q class="containsQuotes">«Epsilon»</q></p>
+
+			<!-- Un paragraphe, une quote, <u></u> au milieu -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta Gamma Delta»</q> Epsilon</p>
+
+			<!-- Un paragraphe, une quote <u>«»</u> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
+			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
+
+			<!-- Un paragraphe, deux quote <u>«»</u> -->
+			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">«Gamma»</q> Delta</p> ✅-->
+			<p>Alpha <u>«Beta»</u> <u>«Gamma»</u> Delta</p>
+
+			<!-- Un paragraphe, une quote <u>«»</u>, interieur 2 quotes -->
+			<!-- Resultat attendu : <p>Alpha <u>«Beta» Gamma «Delta»</u> Epsilon</p> ✅-->
+			<p>Alpha <u>«Beta» Gamma «Delta»</u> Epsilon</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote du milieu ✅-->
+			<!-- Resultat attendu : <p>Alpha «Beta <u>«Gamma»</u> Delta» Epsilon</p> -->
+			<p>Alpha «Beta <u>«Gamma»</u> Delta» Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote externe ✅-->
+			<!-- Resultat attendu : <p>Alpha <b>«Beta «Gamma» Delta»</b> Epsilon</p> -->
+			<p>Alpha <u>«Beta «Gamma» Delta»</u> Epsilon</p>
+
+			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur les deux quotes CAS IMPOSSIBLE : BALISE <u> DANS BALISE <u>  ✅-->
+			<!-- Resultat attendu : <p>Alpha <u>«Beta <u>«Gamma»</u> Delta»</u> Epsilon</p> -->
+			<p>Alpha <u>«Beta <u>«Gamma»</u> Delta»</u> Epsilon</p>
+
+			<!-- Un paragraphe, <u></u> imbriqués CAS IMPOSSIBLE : BALISE <u> DANS BALISE <u> ✅-->
+			<!-- Resultat attendu : Alpha <u>Beta <u>Gamma</u> Delta</u> Epsilon -->
+			<p>Alpha <u>Beta <u>Gamma</u> Delta</u> Epsilon</p>
+
+
+
+
+			<!-- gestion des balises <i></i> avec balises <b></b> et <u></u> -->
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur les deux quotes CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i>  ✅-->
+			<!-- Resultat attendu : <p>Alpha <i>«Beta <i>«Gamma»</i> Delta»</i> Epsilon</p> -->
+			<p>Alpha <i>«Beta <b>«Gamma»</b> Delta»</i> Epsilon</p>
+
+			<!-- Un paragraphe, <i></i> imbriqués CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> ✅-->
+			<!-- Resultat attendu : Alpha <i>Beta <i>Gamma</i> Delta</i> Epsilon -->
+			<p>Alpha <u>Beta <i>Gamma</i> Delta</u> Epsilon</p>
+
+			<!-- Un paragraphe, <i></i> imbriqués CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> ✅-->
+			<!-- Resultat attendu : Alpha <i>Beta <i>Gamma</i> Delta</i> Epsilon -->
+			<p>Alpha <u>Beta <b>Gamma</b> Delta</u> Epsilon</p>
 
 			<signature xsm-preserve="true">JM Bayeux.</signature>
 		</texte>
