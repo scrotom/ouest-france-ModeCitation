@@ -1,12 +1,3 @@
-/*
- * Nom         : RulesService.java
- *
- * Description : Classe permettant de lire et appliquer des règles JSON sur un document XML.
- *
- * Date        : 07/06/2024
- *
- */
-
 package com.ouestfrance.modecitation.Services;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -14,11 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ouestfrance.modecitation.Exception.CustomAppException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.DocumentFragment;
-import org.w3c.dom.Element;
+import org.w3c.dom.*;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -43,7 +30,6 @@ import java.util.regex.Pattern;
 @Log4j2
 public class RulesService {
 
-    //Lit les règles à partir d'un fichier JSON
     public JsonNode readRules(String rulesJsonPath) throws CustomAppException {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -92,9 +78,6 @@ public class RulesService {
         }
     }
 
-
-
-    // Recharger le document pour s'assurer que les modifications sont prises en compte
     public Document reloadDocument(Document document) throws CustomAppException {
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -112,7 +95,6 @@ public class RulesService {
         }
     }
 
-    // Appliquer les règles de citation initiales
     public void applyQuoteModeRules(Document document, JsonNode allRulesNode) throws CustomAppException {
         try {
             Iterator<JsonNode> rulesIterator = allRulesNode.elements();
@@ -132,7 +114,6 @@ public class RulesService {
         }
     }
 
-    //Applique une règle spécifique au document XML
     public void applyOneRule(Document document, String xpath) throws CustomAppException {
         try {
             log.info("Application de xpath: {}", xpath);
@@ -150,13 +131,11 @@ public class RulesService {
         }
     }
 
-    // Effectue une vérification approfondie du nœud et de ses enfants (si + de 1 paire de guillemets dans le même texte par exemple)
     public void deepCheck(Node node, Document document) throws CustomAppException {
         try {
             log.info("Début de deepCheck pour le nœud : {}", node.getNodeName());
             if (node.getNodeType() == Node.TEXT_NODE) {
                 String textContent = node.getTextContent();
-                // Vérifie si le texte contient une citation imbriquée
                 if (containsNestedQuotes(textContent)) {
                     log.info("Citation imbriquée détectée, aucun traitement appliqué.");
                     return;
@@ -174,14 +153,12 @@ public class RulesService {
         }
     }
 
-    // Vérifie si une chaîne de texte contient des citations imbriquées
     private boolean containsNestedQuotes(String text) {
         Pattern nestedQuotePattern = Pattern.compile("«[^«]*«.*»[^«]*?»");
         Matcher matcher = nestedQuotePattern.matcher(text);
         return matcher.find();
     }
 
-    // Applique des balises <q> autour du contenu textuel entouré de guillemets français
     public void applySurroundedContents(Node node, Document document) throws CustomAppException {
         try {
             String textContent = node.getTextContent();
@@ -191,7 +168,6 @@ public class RulesService {
             int lastIndex = 0;
             Node parentNode = node.getParentNode();
 
-            // Vérifie si le parentNode est null avant de l'utiliser
             if (parentNode == null) {
                 return;
             }
@@ -205,7 +181,7 @@ public class RulesService {
                 int end = matcher.end();
 
                 String before = textContent.substring(lastIndex, start);
-                String inside = textContent.substring(start, end); // Inclut les guillemets
+                String inside = textContent.substring(start, end);
                 lastIndex = end;
 
                 if (!before.isEmpty()) {
@@ -214,11 +190,8 @@ public class RulesService {
 
                 Element q = document.createElement("q");
                 q.setAttribute("class", "containsQuotes");
-                log.info("creation de l'element q");
                 q.appendChild(document.createTextNode(inside));
-                log.info("creation du text node");
                 fragment.appendChild(q);
-                log.info("append du fragment");
             }
 
             String after = textContent.substring(lastIndex);
@@ -229,7 +202,6 @@ public class RulesService {
             parentNode.replaceChild(fragment, node);
             log.info("Balise <q> appliquée autour du texte: {}", textContent);
 
-            // Afficher l'entièreté du document XML après modification
             log.info("Contenu actuel du document XML :\n{}", documentToString(document));
         } catch (Exception e) {
             log.error("Erreur lors de l'application des contenus entourés", e);
@@ -237,106 +209,86 @@ public class RulesService {
         }
     }
 
-    // Remplacement des balises <b> par <q> ou suppression des balises <b> selon le cas
     public void replaceBoldWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
-            NodeList boldNodes = (NodeList) xPath.evaluate("//b", document, XPathConstants.NODESET);
-            log.info("Nombre de nœuds <b> trouvés: {}", boldNodes.getLength());
+            NodeList pNodes = (NodeList) xPath.evaluate("//p", document, XPathConstants.NODESET);
+            log.info("Nombre de nœuds <p> trouvés: {}", pNodes.getLength());
 
-            for (int i = 0; i < boldNodes.getLength(); i++) {
-                Node boldNode = boldNodes.item(i);
-                String boldTextContent = boldNode.getTextContent().trim();
+            for (int i = 0; i < pNodes.getLength(); i++) {
+                Node pNode = pNodes.item(i);
+                String pContent = getTextContentWithTags(pNode);
+                log.info("Traitement du nœud <p> avec contenu: {}", pContent);
 
-                // Vérifie si le texte commence et se termine par les guillemets français
-                if (boldTextContent.startsWith("«") && boldTextContent.endsWith("»")) {
+                if (containsNestedQuotes(pContent)) {
+                    log.info("Citation imbriquée détectée dans le nœud <p>, aucun traitement appliqué.");
+                    continue;
+                }
+
+                Pattern pattern = Pattern.compile("«([^«]*)<b>([^«]*)</b>([^«]*)»");
+                Matcher matcher = pattern.matcher(pContent);
+
+                if (matcher.find()) {
+                    String beforeQuote = pContent.substring(0, matcher.start());
+                    String afterQuote = pContent.substring(matcher.end());
+                    String quoteContent = matcher.group(1) + matcher.group(2) + matcher.group(3);
+
                     Element qElement = document.createElement("q");
                     qElement.setAttribute("class", "containsQuotes");
+                    qElement.setTextContent("«" + quoteContent + "»");
 
-                    while (boldNode.hasChildNodes()) {
-                        qElement.appendChild(boldNode.getFirstChild());
+                    DocumentFragment fragment = document.createDocumentFragment();
+                    if (!beforeQuote.isEmpty()) {
+                        fragment.appendChild(document.createTextNode(beforeQuote));
+                    }
+                    fragment.appendChild(qElement);
+                    if (!afterQuote.isEmpty()) {
+                        fragment.appendChild(document.createTextNode(afterQuote));
                     }
 
-                    boldNode.getParentNode().replaceChild(qElement, boldNode);
-                    log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", boldTextContent);
-                } else if (boldTextContent.contains("«") && boldTextContent.contains("»")) {
-                    // Si le texte contient des guillemets français, remplace tout par une seule balise <q>
-                    Element qElement = document.createElement("q");
-                    qElement.setAttribute("class", "containsQuotes");
-                    qElement.setTextContent(boldTextContent);
-                    boldNode.getParentNode().replaceChild(qElement, boldNode);
-                    log.info("Balise <b> contenant des guillemets remplacée par <q>: {}", boldTextContent);
+                    pNode.setTextContent("");
+                    pNode.appendChild(fragment);
+
+                    log.info("Balise <b> supprimée et <q> ajoutée dans le texte: {}", getTextContentWithTags(pNode));
                 } else {
-                    // Si le texte ne contient pas de guillemets français, on ne fait rien
-                    log.info("Balise <b> conservée autour du texte: {}", boldTextContent);
+                    processBoldTagsOutsideQuotes(pNode);
                 }
             }
-
-            // Appel à la méthode pour gérer les balises <b> à l'intérieur des citations
-            log.info("appel de la méthode replaceBoldInsideQuotes");
-            replaceBoldInsideQuotes(document);
-            log.info("fin de la méthode replaceBoldInsideQuotes");
-
         } catch (Exception e) {
             log.error("Erreur lors du remplacement de <b> par <q>", e);
             throw new CustomAppException("Erreur lors du remplacement de <b> par <q>", e);
         }
     }
 
-    // Méthode pour gérer les balises <b> à l'intérieur des citations
-    private void replaceBoldInsideQuotes(Document document) throws CustomAppException {
+    private void processBoldTagsOutsideQuotes(Node pNode) throws CustomAppException {
         try {
-            XPath xPath = XPathFactory.newInstance().newXPath();
-            NodeList pNodes = (NodeList) xPath.evaluate("//p", document, XPathConstants.NODESET);
-            for (int i = 0; i < pNodes.getLength(); i++) {
-                Node pNode = pNodes.item(i);
-                String pContent = getTextContentWithTags(pNode);
-                log.info("Traitement du nœud <p> avec contenu: {}", pContent);
+            NodeList boldNodes = pNode.getChildNodes();
+            for (int i = 0; i < boldNodes.getLength(); i++) {
+                Node boldNode = boldNodes.item(i);
+                if (boldNode.getNodeName().equals("b")) {
+                    String boldTextContent = boldNode.getTextContent().trim();
 
-                if (pContent.contains("«") && pContent.contains("»")) {
-                    Pattern pattern = Pattern.compile("«([^«]*)<b>([^«]*)</b>([^«]*)»");
-                    Matcher matcher = pattern.matcher(pContent);
-
-                    if (matcher.find()) {
-                        String beforeQuote = pContent.substring(0, matcher.start());
-                        String afterQuote = pContent.substring(matcher.end());
-                        String quoteContent = matcher.group(1) + matcher.group(2) + matcher.group(3);
-
-                        log.info("Texte avant la citation: {}", beforeQuote);
-                        log.info("Texte après la citation: {}", afterQuote);
-                        log.info("Contenu de la citation: {}", quoteContent);
-
-                        Element qElement = document.createElement("q");
+                    if (boldTextContent.startsWith("«") && boldTextContent.endsWith("»")) {
+                        Element qElement = pNode.getOwnerDocument().createElement("q");
                         qElement.setAttribute("class", "containsQuotes");
-                        qElement.setTextContent("«" + quoteContent + "»");
 
-                        DocumentFragment fragment = document.createDocumentFragment();
-                        if (!beforeQuote.isEmpty()) {
-                            fragment.appendChild(document.createTextNode(beforeQuote));
-                        }
-                        fragment.appendChild(qElement);
-                        if (!afterQuote.isEmpty()) {
-                            fragment.appendChild(document.createTextNode(afterQuote));
+                        while (boldNode.hasChildNodes()) {
+                            qElement.appendChild(boldNode.getFirstChild());
                         }
 
-                        pNode.setTextContent(""); // Clear the current content
-                        pNode.appendChild(fragment);
-
-                        log.info("Balise <b> supprimée et <q> ajoutée dans le texte: {}", getTextContentWithTags(pNode));
+                        boldNode.getParentNode().replaceChild(qElement, boldNode);
+                        log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", boldTextContent);
                     } else {
-                        log.info("Aucune balise <b> trouvée à l'intérieur de la citation.");
+                        log.info("Balise <b> conservée autour du texte: {}", boldTextContent);
                     }
-                } else {
-                    log.info("Le nœud <p> ne contient pas de guillemets français.");
                 }
             }
         } catch (Exception e) {
-            log.error("Erreur lors du traitement des balises <b> à l'intérieur des citations", e);
-            throw new CustomAppException("Erreur lors du traitement des balises <b> à l'intérieur des citations", e);
+            log.error("Erreur lors du traitement des balises <b> en dehors des citations", e);
+            throw new CustomAppException("Erreur lors du traitement des balises <b> en dehors des citations", e);
         }
     }
 
-    // Méthode pour obtenir le contenu texte d'un nœud avec les balises
     private String getTextContentWithTags(Node node) {
         StringBuilder result = new StringBuilder();
         NodeList childNodes = node.getChildNodes();
@@ -356,7 +308,6 @@ public class RulesService {
         return result.toString();
     }
 
-    // Convertir un document XML en chaîne de caractères
     private String documentToString(Document document) throws CustomAppException {
         try {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -373,9 +324,3 @@ public class RulesService {
         }
     }
 }
-
-
-
-
-
-
