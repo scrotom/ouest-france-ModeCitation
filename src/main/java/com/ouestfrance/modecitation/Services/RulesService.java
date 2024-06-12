@@ -159,6 +159,12 @@ public class RulesService {
         return matcher.find();
     }
 
+    private boolean containsMultipleQuotesInSameB(String text) {
+        Pattern multipleQuotesPattern = Pattern.compile("«[^«»]*?»[^«»]*«[^«»]*?»");
+        Matcher matcher = multipleQuotesPattern.matcher(text);
+        return matcher.find();
+    }
+
     public void applySurroundedContents(Node node, Document document) throws CustomAppException {
         try {
             String textContent = node.getTextContent();
@@ -225,11 +231,6 @@ public class RulesService {
                     continue;
                 }
 
-                if (containsMultipleQuotes(pContent)) {
-                    log.info("Le nœud <p> contient plusieurs citations, aucun traitement appliqué.");
-                    continue;
-                }
-
                 Pattern pattern = Pattern.compile("«([^«]*)<b>([^«]*)</b>([^«]*)»");
                 Matcher matcher = pattern.matcher(pContent);
 
@@ -283,6 +284,20 @@ public class RulesService {
 
                         boldNode.getParentNode().replaceChild(qElement, boldNode);
                         log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", boldTextContent);
+                    } else if (!containsMultipleQuotesInSameB(boldTextContent)) {
+                        // Vérifie chaque partie du contenu de la balise <b> individuellement
+                        String[] parts = boldTextContent.split("(?<=»)(?= )|(?<= )(«)");
+                        for (String part : parts) {
+                            if (part.startsWith("«") && part.endsWith("»")) {
+                                Element qElement = pNode.getOwnerDocument().createElement("q");
+                                qElement.setAttribute("class", "containsQuotes");
+                                qElement.setTextContent(part);
+                                boldNode.getParentNode().replaceChild(qElement, boldNode);
+                                log.info("Balise <b> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", part);
+                            } else {
+                                log.info("Partie du texte conservée: {}", part);
+                            }
+                        }
                     } else {
                         log.info("Balise <b> conservée autour du texte: {}", boldTextContent);
                     }
@@ -292,12 +307,6 @@ public class RulesService {
             log.error("Erreur lors du traitement des balises <b> en dehors des citations", e);
             throw new CustomAppException("Erreur lors du traitement des balises <b> en dehors des citations", e);
         }
-    }
-
-    private boolean containsMultipleQuotes(String text) {
-        Pattern multipleQuotesPattern = Pattern.compile("«[^«»]*?»[^«»]*«[^«»]*?»");
-        Matcher matcher = multipleQuotesPattern.matcher(text);
-        return matcher.find();
     }
 
     private String getTextContentWithTags(Node node) {
