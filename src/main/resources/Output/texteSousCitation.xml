@@ -33,6 +33,11 @@
 		<media-groupe/>
 		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
 
+			<!-- cas généraux -->
+
+
+
+
 			<!-- Un paragraphe, sans quote -->
 			<!-- Resultat attendu : <p>Alpha Beta Gamma</p> ✅-->
 			<p>Alpha Beta Gamma</p>
@@ -59,6 +64,13 @@
 			<!-- Un paragraphe, une quote non ouverte-->
 			<!-- Resultat attendu : <p>Alpha Beta Gamma»</p> ✅-->
 			<p>Alpha Beta Gamma»</p>
+
+
+
+
+			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
+			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
 
 
 
@@ -99,13 +111,6 @@
 			<!-- Un paragraphe, une quote <b>«»</b>, interieur 2 quotes -->
 			<!-- Resultat attendu : <p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p> ✅-->
 			<p>Alpha <b>«Beta» Gamma «Delta»</b> Epsilon</p>
-
-
-
-
-			<!-- Un paragraphe, deux quotes imbriquées -->
-			<!-- Resultat attendu : <p>Alpha «Beta «Gamma» Delta» Epsilon</p> ✅-->
-			<p>Alpha «Beta «Gamma» Delta» Epsilon</p>
 
 
 
@@ -244,15 +249,15 @@
 
 
 
-			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur les deux quotes CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i>  ✅-->
+			<!-- Un paragraphe, <i>«»</i><b>«»</b> imbriqués : BALISE <b> DANS BALISE <i>  ✅-->
 			<!-- Resultat attendu : <p>Alpha <i>«Beta <i>«Gamma»</i> Delta»</i> Epsilon</p> -->
 			<p>Alpha <i>«Beta <b>«Gamma»</b> Delta»</i> Epsilon</p>
 
-			<!-- Un paragraphe, <i></i> imbriqués CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> ✅-->
+			<!-- Un paragraphe, <i></i><u></u> imbriqués : BALISE <i> DANS BALISE <u> ✅-->
 			<!-- Resultat attendu : Alpha <i>Beta <i>Gamma</i> Delta</i> Epsilon -->
 			<p>Alpha <u>Beta <i>Gamma</i> Delta</u> Epsilon</p>
 
-			<!-- Un paragraphe, <i></i> imbriqués CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> ✅-->
+			<!-- Un paragraphe, <b></b><u></u> imbriqués : BALISE <b> DANS BALISE <u> ✅-->
 			<!-- Resultat attendu : Alpha <i>Beta <i>Gamma</i> Delta</i> Epsilon -->
 			<p>Alpha <u>Beta <b>Gamma</b> Delta</u> Epsilon</p>
 
