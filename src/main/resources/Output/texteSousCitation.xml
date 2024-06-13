@@ -88,6 +88,10 @@
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p> ✅-->
 			<p>Alpha <q class="containsQuotes">«Beta»</q> Gamma</p>
 
+			<!-- Un paragraphe, une quote <b>«»</b> sur tout le paragraphe -->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Alpha»</q></p> ✅-->
+			<p><q class="containsQuotes">«Alpha»</q></p>
+
 			<!-- Un paragraphe, deux quote <b>«»</b> -->
 			<!-- Resultat attendu : <p>Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">«Gamma»</q> Delta</p> ✅-->
 			<p>Alpha <q class="containsQuotes">«Beta»</q> <q class="containsQuotes">«Gamma»</q> Delta</p>
