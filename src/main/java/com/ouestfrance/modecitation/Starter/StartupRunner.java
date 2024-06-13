@@ -27,9 +27,13 @@ public class StartupRunner implements CommandLineRunner {
     @Override
     public void run(String... args) {
         try {
+            log.info("Démarrage de l'application Mode Citation");
             modeCitationService.applyQuoteMode();
+            log.info("Traitement des citations terminé avec succès");
         } catch (CustomAppException e) {
             log.error("Une erreur est survenue lors de l'application du mode citation", e);
         }
     }
 }
+
+

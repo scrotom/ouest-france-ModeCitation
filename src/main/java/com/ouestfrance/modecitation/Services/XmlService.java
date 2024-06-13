@@ -10,7 +10,6 @@
 package com.ouestfrance.modecitation.Services;
 
 import com.ouestfrance.modecitation.Exception.CustomAppException;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -20,7 +19,10 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
@@ -29,17 +31,15 @@ import java.net.URL;
 
 @Service
 @Log4j2
-@Setter
 public class XmlService {
 
-    private TransformerFactory transformerFactory = TransformerFactory.newInstance();
+    private final TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
     //Charge un document XML à partir d'une source spécifiée
     public Document loadDocument(String source) throws CustomAppException {
-        log.info("Lecture du contenu XML depuis : {}", source);
         try {
+            log.info("Chargement du document XML depuis : {}", source);
             String xmlContent = readXMLFromSource(source);
-            log.info("Contenu XML lu depuis la source :\n{}", xmlContent);
             return loadXMLFromString(xmlContent);
         } catch (IOException | SAXException | ParserConfigurationException e) {
             log.error("Erreur lors du chargement du document XML", e);
@@ -49,7 +49,6 @@ public class XmlService {
 
     //Lit le contenu XML à partir d'une source spécifiée
     public String readXMLFromSource(String source) throws IOException {
-        log.info("Lecture du contenu XML depuis : {}", source);
         if (source.startsWith("http://") || source.startsWith("https://")) {
             return readXMLFromURL(source);
         } else {
@@ -105,6 +104,7 @@ public class XmlService {
                 is.setEncoding("UTF-8");
                 Document document = builder.parse(is);
                 document.getDocumentElement().normalize();
+                log.info("Document XML chargé avec succès");
                 return document;
             }
         } catch (ParserConfigurationException | IOException | SAXException e) {
@@ -127,11 +127,11 @@ public class XmlService {
             transformer.transform(new DOMSource(document), new StreamResult(writer));
 
             String xmlContent = writer.toString().replaceFirst("\\?>", "?>\n");
-            log.info("Contenu XML à enregistrer :\n{}", xmlContent);
 
             try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath, StandardCharsets.UTF_8))) {
                 bufferedWriter.write(xmlContent);
             }
+            log.info("Document XML enregistré avec succès");
         } catch (TransformerException | IOException e) {
             log.error("Erreur lors de l'enregistrement du document XML", e);
             throw new CustomAppException("Erreur lors de l'enregistrement du document XML", e);
@@ -155,12 +155,9 @@ public class XmlService {
             transformer.transform(source, result);
 
             String xmlString = writer.toString();
-
-            // Ajout de l'indentation appropriée après la déclaration XML
             xmlString = xmlString.replaceFirst("\\?>", "?>\n");
 
-            log.info("Contenu XML converti en chaîne après transformation:\n{}", xmlString);
-
+            log.info("Document XML converti en chaîne avec succès");
             return xmlString;
         } catch (TransformerException e) {
             log.error("Erreur lors de la conversion du document en chaîne", e);

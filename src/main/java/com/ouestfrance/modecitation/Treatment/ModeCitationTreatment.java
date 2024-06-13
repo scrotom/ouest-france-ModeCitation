@@ -39,29 +39,22 @@ public class ModeCitationTreatment {
     //Applique le mode citation aux documents XML en utilisant les règles JSON
     public void applyQuoteMode() throws CustomAppException {
         try {
-            log.info("Démarrage de applyQuoteMode");
-
             log.info("Lecture des règles depuis : {}", rulesJsonPath);
             var allRulesNode = rulesService.readRules(rulesJsonPath);
-            log.info("Contenu JSON des règles : {}", allRulesNode != null ? allRulesNode.toString() : "null");
 
-            log.info("Lecture du contenu XML depuis : {}", inputXmlSource);
+            log.info("Lecture du document XML depuis : {}", inputXmlSource);
             var document = xmlService.loadDocument(inputXmlSource);
-            log.info("Contenu du document XML chargé : {}", document != null ? xmlService.documentToString(document) : "null");
 
-            log.info("Application des règles au document");
+            log.info("Application des règles au document XML");
             rulesService.applyRules(document, allRulesNode);
-
-            log.info("Contenu du document XML modifié avant sauvegarde : {}", xmlService.documentToString(document));
 
             log.info("Enregistrement du document modifié dans : {}", outputXmlPath);
             xmlService.saveDocumentToFile(document, outputXmlPath);
-            log.info("Fin de applyQuoteMode");
-
-            log.info("Contenu final du document XML après sauvegarde : {}", xmlService.documentToString(document));
+            log.info("Traitement du mode citation terminé");
         } catch (Exception e) {
             log.error("Erreur lors de l'application du mode citation", e);
             throw new CustomAppException("Erreur lors de l'application du mode citation", e);
         }
     }
 }
+

@@ -1,3 +1,12 @@
+/*
+ * Nom         : RulesService.java
+ *
+ * Description : Cette classe lit les règles d'un fichier JSON et les applique à un document XML.
+ *
+ * Date        : 07/06/2024
+ *
+ */
+
 package com.ouestfrance.modecitation.Services;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -10,7 +19,6 @@ import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -30,8 +38,10 @@ import java.util.regex.Pattern;
 @Log4j2
 public class RulesService {
 
+    // Lit les règles à partir d'un fichier JSON
     public JsonNode readRules(String rulesJsonPath) throws CustomAppException {
         try {
+            log.info("Lecture des règles depuis le fichier JSON : {}", rulesJsonPath);
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode rulesNode = objectMapper.readTree(new File(rulesJsonPath));
             JsonNode allRulesNode = rulesNode.get("all");
@@ -41,6 +51,7 @@ public class RulesService {
                 throw new CustomAppException("Format JSON des règles invalide : clé 'all' non trouvée ou n'est pas un tableau");
             }
 
+            log.info("Règles lues avec succès");
             return allRulesNode;
         } catch (IOException e) {
             log.error("Erreur lors de la lecture du fichier JSON des règles", e);
@@ -48,38 +59,25 @@ public class RulesService {
         }
     }
 
+    // Applique les règles au document XML
     public void applyRules(Document document, JsonNode allRulesNode) throws CustomAppException {
         try {
-            logDocumentState("Contenu initial du document XML", document);
-
+            log.info("Début de l'application des règles sur le document XML");
             replaceFormattingWithQuote(document);
-            logDocumentState("Contenu du document XML après replaceFormattingWithQuote", document);
-
             applyQuoteModeRules(document, allRulesNode);
-            logDocumentState("Contenu du document XML après applyQuoteModeRules", document);
-
             document = reloadDocument(document);
-            logDocumentState("Contenu du document XML après rechargement", document);
-
             applyQuoteModeRules(document, allRulesNode);
-            logDocumentState("Contenu final du document XML après deuxième applyQuoteModeRules", document);
+            log.info("Fin de l'application des règles sur le document XML");
         } catch (Exception e) {
             log.error("Erreur lors de l'application des règles au document", e);
             throw new CustomAppException("Erreur lors de l'application des règles au document", e);
         }
     }
 
-    public void logDocumentState(String message, Document document) {
-        try {
-            String xmlString = documentToString(document);
-            log.info("{}:\n{}", message, xmlString);
-        } catch (CustomAppException e) {
-            log.error("Erreur lors de la capture de l'état du document", e);
-        }
-    }
-
+    // Recharge le document XML en créant une nouvelle instance de celui-ci
     public Document reloadDocument(Document document) throws CustomAppException {
         try {
+            log.info("Rechargement du document XML");
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             DOMSource source = new DOMSource(document);
             StringWriter writer = new StringWriter();
@@ -88,56 +86,58 @@ public class RulesService {
 
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
-            return builder.parse(new InputSource(new StringReader(writer.toString())));
+            Document reloadedDocument = builder.parse(new InputSource(new StringReader(writer.toString())));
+            log.info("Document XML rechargé avec succès");
+            return reloadedDocument;
         } catch (Exception e) {
             log.error("Erreur lors du rechargement du document XML", e);
             throw new CustomAppException("Erreur lors du rechargement du document XML", e);
         }
     }
 
+    // Applique les règles de mode citation au document XML
     public void applyQuoteModeRules(Document document, JsonNode allRulesNode) throws CustomAppException {
         try {
+            log.info("Application des règles de mode citation");
             Iterator<JsonNode> rulesIterator = allRulesNode.elements();
             while (rulesIterator.hasNext()) {
                 JsonNode ruleNode = rulesIterator.next();
                 JsonNode xpathNode = ruleNode.get("xpath");
                 if (xpathNode != null) {
-                    log.info("Application de la règle avec xpath: {}", xpathNode.asText());
+                    log.info("Application de la règle avec XPath : {}", xpathNode.asText());
                     applyOneRule(document, xpathNode.asText());
                 } else {
-                    log.warn("Règle sans xpath: {}", ruleNode);
+                    log.warn("Règle sans XPath : {}", ruleNode);
                 }
             }
+            log.info("Toutes les règles ont été appliquées");
         } catch (Exception e) {
             log.error("Erreur lors de l'application des règles au document", e);
             throw new CustomAppException("Erreur lors de l'application des règles au document", e);
         }
     }
 
+    // Applique une règle spécifique au document XML en utilisant une expression XPath
     public void applyOneRule(Document document, String xpath) throws CustomAppException {
         try {
-            log.info("Application de xpath: {}", xpath);
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList nodes = (NodeList) xPath.evaluate(xpath, document, XPathConstants.NODESET);
-            log.info("Nombre de nœuds trouvés pour XPath {}: {}", xpath, nodes.getLength());
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node node = nodes.item(i);
-                log.info("Contenu du nœud: {}", node.getTextContent());
                 deepCheck(node, document);
             }
         } catch (Exception e) {
-            log.error("Erreur lors de l'application de XPath: {}", xpath, e);
+            log.error("Erreur lors de l'application de XPath: " + xpath, e);
             throw new CustomAppException("Erreur lors de l'application de XPath: " + xpath, e);
         }
     }
 
+    // Effectue une vérification approfondie sur un nœud pour gérer les citations imbriquées
     public void deepCheck(Node node, Document document) throws CustomAppException {
         try {
-            log.info("Début de deepCheck pour le nœud : {}", node.getNodeName());
             if (node.getNodeType() == Node.TEXT_NODE) {
                 String textContent = node.getTextContent();
                 if (containsNestedQuotes(textContent)) {
-                    log.info("Citation imbriquée détectée, aucun traitement appliqué.");
                     return;
                 }
                 applySurroundedContents(node, document);
@@ -153,18 +153,21 @@ public class RulesService {
         }
     }
 
+    // Vérifie si le texte contient des citations imbriquées
     private boolean containsNestedQuotes(String text) {
         Pattern nestedQuotePattern = Pattern.compile("«[^«]*«.*»[^«]*?»");
         Matcher matcher = nestedQuotePattern.matcher(text);
         return matcher.find();
     }
 
+    // Vérifie si le texte contient plusieurs citations dans la même balise <b>
     private boolean containsMultipleQuotesInSameB(String text) {
         Pattern multipleQuotesPattern = Pattern.compile("«[^«»]*?»[^«»]*«[^«»]*?»");
         Matcher matcher = multipleQuotesPattern.matcher(text);
         return matcher.find();
     }
 
+    // Applique des balises <q> autour des contenus entourés de guillemets
     public void applySurroundedContents(Node node, Document document) throws CustomAppException {
         try {
             String textContent = node.getTextContent();
@@ -182,7 +185,6 @@ public class RulesService {
 
             while (matcher.find()) {
                 String match = matcher.group();
-                log.info("Citation trouvée: {}", match);
                 int start = matcher.start();
                 int end = matcher.end();
 
@@ -206,28 +208,23 @@ public class RulesService {
             }
 
             parentNode.replaceChild(fragment, node);
-            log.info("Balise <q> appliquée autour du texte: {}", textContent);
-
-            log.info("Contenu actuel du document XML :\n{}", documentToString(document));
+            log.info("Balise <q> appliquée autour du texte : {}", textContent);
         } catch (Exception e) {
-            log.error("Erreur lors de l'application des contenus entourés", e);
             throw new CustomAppException("Erreur lors de l'application des contenus entourés", e);
         }
     }
 
+    // Remplace les balises de formatage par des balises de citation <q>
     public void replaceFormattingWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList pNodes = (NodeList) xPath.evaluate("//p", document, XPathConstants.NODESET);
-            log.info("Nombre de nœuds <p> trouvés: {}", pNodes.getLength());
 
             for (int i = 0; i < pNodes.getLength(); i++) {
                 Node pNode = pNodes.item(i);
                 String pContent = getTextContentWithTags(pNode);
-                log.info("Traitement du nœud <p> avec contenu: {}", pContent);
 
                 if (containsNestedQuotes(pContent)) {
-                    log.info("Citation imbriquée détectée dans le nœud <p>, aucun traitement appliqué.");
                     continue;
                 }
 
@@ -254,18 +251,17 @@ public class RulesService {
 
                     pNode.setTextContent("");
                     pNode.appendChild(fragment);
-
-                    log.info("Balises <b>, <i> ou <u> supprimées et <q> ajoutée dans le texte: {}", getTextContentWithTags(pNode));
+                    log.info("Balises de formatage remplacées par <q> dans le texte : {}", pContent);
                 } else {
                     processFormattingTagsOutsideQuotes(pNode);
                 }
             }
         } catch (Exception e) {
-            log.error("Erreur lors du remplacement des balises de formatage par <q>", e);
             throw new CustomAppException("Erreur lors du remplacement des balises de formatage par <q>", e);
         }
     }
 
+    // Traite les balises de formatage en dehors des citations
     private void processFormattingTagsOutsideQuotes(Node pNode) throws CustomAppException {
         try {
             NodeList formattingNodes = pNode.getChildNodes();
@@ -283,18 +279,15 @@ public class RulesService {
                         }
 
                         formattingNode.getParentNode().replaceChild(qElement, formattingNode);
-                        log.info("Balise <{}> remplacée par <q class=\"containsQuotes\"> avec le texte: {}", formattingNode.getNodeName(), formattingTextContent);
-                    } else {
-                        log.info("Balise <{}> conservée autour du texte: {}", formattingNode.getNodeName(), formattingTextContent);
                     }
                 }
             }
         } catch (Exception e) {
-            log.error("Erreur lors du traitement des balises de formatage en dehors des citations", e);
             throw new CustomAppException("Erreur lors du traitement des balises de formatage en dehors des citations", e);
         }
     }
 
+    // Extrait le contenu textuel avec les balises incluses
     private String getTextContentWithTags(Node node) {
         StringBuilder result = new StringBuilder();
         NodeList childNodes = node.getChildNodes();
@@ -312,21 +305,5 @@ public class RulesService {
             }
         }
         return result.toString();
-    }
-
-    private String documentToString(Document document) throws CustomAppException {
-        try {
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            StringWriter writer = new StringWriter();
-            transformer.transform(new DOMSource(document), new StreamResult(writer));
-            return writer.toString();
-        } catch (Exception e) {
-            log.error("Erreur lors de la conversion du document en chaîne", e);
-            throw new CustomAppException("Erreur lors de la conversion du document en chaîne", e);
-        }
     }
 }
