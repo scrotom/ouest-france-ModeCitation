@@ -62,12 +62,16 @@
 			<p>Lorem «ipsum dolor</p>
 
 			<!-- Un paragraphe, une quote non fini, une quote-->
-			<!-- Resultat attendu : <p>Lorem «ipsum <q class="containsQuotes">«dolor»</q></p> ✅-->
-			<p>Lorem «ipsum <q class="containsQuotes">«dolor»</q></p>
+			<!-- Resultat attendu : <p>Lorem «ipsum «dolor»</p> ✅-->
+			<p>«ipsum «dolor»</p>
 
 			<!-- Un paragraphe, une quote, une quote non fini-->
-			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor»</p> ✅-->
-			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor»</p>
+			<!-- Resultat attendu : <p>Lorem «ipsum» dolor»</p> ✅-->
+			<p>Lorem «ipsum» dolor»</p>
+
+			<!-- Un paragraphe, une quote, une quote, une quote non fini-->
+			<!-- Resultat attendu : <p>Lorem «ipsum» dolor»</p> ✅-->
+			<p>«Lorem» ipsum «dolor» sit»</p>
 
 			<!-- Un paragraphe, une quote non ouverte-->
 			<!-- Resultat attendu : <p>Lorem ipsum dolor»</p> ✅-->

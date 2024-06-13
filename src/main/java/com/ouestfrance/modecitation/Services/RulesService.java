@@ -173,10 +173,32 @@ public class RulesService {
         return matcher.find();
     }
 
-    // Applique des balises <q> autour des contenus entourés de guillemets
+    // Vérifie si chaque quote ouvrante a une quote fermante avant une nouvelle quote ouvrante
+    public boolean areQuotesProperlyNested(String text) {
+        int quoteOpenCount = 0;
+        for (char ch : text.toCharArray()) {
+            if (ch == '«') {
+                quoteOpenCount++;
+            } else if (ch == '»') {
+                if (quoteOpenCount == 0) {
+                    return false; // Found closing quote without a matching opening quote
+                }
+                quoteOpenCount--;
+            }
+        }
+        return quoteOpenCount == 0; // Ensure all opening quotes have matching closing quotes
+    }
+
     public void applySurroundedContents(Node node, Document document) throws CustomAppException {
         try {
             String textContent = node.getTextContent();
+
+            // Ajout de la vérification des quotes correctement imbriquées
+            if (!areQuotesProperlyNested(textContent)) {
+                log.warn("Quotes non correctement imbriquées trouvées : {}", textContent);
+                return;
+            }
+
             String regex = "«[^«]*?»";
             Matcher matcher = Pattern.compile(regex).matcher(textContent);
 
@@ -219,6 +241,7 @@ public class RulesService {
             throw new CustomAppException("Erreur lors de l'application des contenus entourés", e);
         }
     }
+
 
     // Remplace les balises de formatage par des balises de citation <q>
     public void replaceFormattingWithQuote(Document document) throws CustomAppException {
