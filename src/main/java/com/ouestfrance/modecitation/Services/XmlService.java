@@ -10,6 +10,8 @@
 package com.ouestfrance.modecitation.Services;
 
 import com.ouestfrance.modecitation.Exception.CustomAppException;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -29,11 +31,14 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.net.URL;
 
+
 @Service
 @Log4j2
+@Setter
 public class XmlService {
 
-    private final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+    private TransformerFactory transformerFactory = TransformerFactory.newInstance();
+
 
     //Charge un document XML à partir d'une source spécifiée
     public Document loadDocument(String source) throws CustomAppException {
@@ -46,7 +51,6 @@ public class XmlService {
             throw new CustomAppException("Erreur lors du chargement du document XML", e);
         }
     }
-
     //Lit le contenu XML à partir d'une source spécifiée
     public String readXMLFromSource(String source) throws IOException {
         if (source.startsWith("http://") || source.startsWith("https://")) {
@@ -141,7 +145,6 @@ public class XmlService {
     // Convertit un document XML en chaîne de caractères
     public String documentToString(Document document) throws CustomAppException {
         try {
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
@@ -164,4 +167,5 @@ public class XmlService {
             throw new CustomAppException("Erreur lors de la conversion du document en chaîne", e);
         }
     }
+
 }

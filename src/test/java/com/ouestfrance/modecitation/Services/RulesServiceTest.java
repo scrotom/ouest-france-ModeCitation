@@ -1,7 +1,6 @@
 package com.ouestfrance.modecitation.Services;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ouestfrance.modecitation.Exception.CustomAppException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,8 +17,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -83,12 +80,14 @@ public class RulesServiceTest {
         Document document = builder.newDocument();
 
         RulesService spyRulesService = Mockito.spy(rulesService);
+        doReturn(document).when(spyRulesService).reloadDocument(any(Document.class));
         doNothing().when(spyRulesService).applyOneRule(any(Document.class), anyString());
 
         spyRulesService.applyRules(document, rulesNode);
 
-        verify(spyRulesService, times(1)).applyOneRule(any(Document.class), eq("//test"));
+        verify(spyRulesService, times(2)).applyOneRule(any(Document.class), eq("//test"));
     }
+
 
     @Test
     // Vérifie le comportement lorsqu'une règle ne contient pas de xpath
@@ -102,6 +101,8 @@ public class RulesServiceTest {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
+        Element rootElement = document.createElement("root");
+        document.appendChild(rootElement);
 
         RulesService spyRulesService = Mockito.spy(rulesService);
 
@@ -109,6 +110,7 @@ public class RulesServiceTest {
 
         verify(spyRulesService, times(0)).applyOneRule(any(Document.class), anyString());
     }
+
 
     @Test
     // Vérifie que CustomAppException est lancée si une exception survient lors de l'application des règles
@@ -187,12 +189,9 @@ public class RulesServiceTest {
         Node node = document.createTextNode("Some text with «quotes».");
         parent.appendChild(node);
 
-        RulesService spyRulesService = Mockito.spy(rulesService);
-        spyRulesService.applySurroundedContents(node, document);
+        rulesService.applySurroundedContents(node, document);
 
-        verify(spyRulesService, times(1)).applySurroundedContents(any(Node.class), any(Document.class));
-
-        assertEquals("Some text with", parent.getFirstChild().getTextContent());
+        assertEquals("Some text with ", parent.getFirstChild().getTextContent());
         assertEquals("containsQuotes", ((Element) parent.getChildNodes().item(1)).getAttribute("class"));
         assertEquals("«quotes»", parent.getChildNodes().item(1).getTextContent());
         assertEquals(".", parent.getChildNodes().item(2).getTextContent());
@@ -215,39 +214,43 @@ public class RulesServiceTest {
     }
 
     @Test
-    // Vérifie que les balises <b> sont correctement remplacées par des balises <q>
-    public void testReplaceBoldWithQuote_Success() throws Exception {
+    // Vérifie que les balises de formatage sont correctement remplacées par des balises <q>
+    public void testReplaceFormattingWithQuote_Success() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
+
         Element parent = document.createElement("parent");
         document.appendChild(parent);
 
-        Element boldElement = document.createElement("b");
-        boldElement.appendChild(document.createTextNode("«C’est le rêve de tout joueur d’être numéro un.»"));
-        parent.appendChild(boldElement);
+        Element pElement = document.createElement("p");
+        pElement.appendChild(document.createTextNode("Text before «"));
+        Element bElement = document.createElement("b");
+        bElement.appendChild(document.createTextNode("bold text"));
+        pElement.appendChild(bElement);
+        pElement.appendChild(document.createTextNode("» text after"));
+        parent.appendChild(pElement);
 
-        RulesService spyRulesService = Mockito.spy(rulesService);
-        spyRulesService.replaceBoldWithQuote(document);
+        rulesService.replaceFormattingWithQuote(document);
 
         NodeList qNodes = document.getElementsByTagName("q");
         assertEquals(1, qNodes.getLength());
         assertEquals("containsQuotes", ((Element) qNodes.item(0)).getAttribute("class"));
-        assertEquals("«C’est le rêve de tout joueur d’être numéro un.»", qNodes.item(0).getTextContent());
+        assertEquals("«bold text»", qNodes.item(0).getTextContent());
     }
 
     @Test
-    // Vérifie que CustomAppException est lancée si une exception survient lors du remplacement des balises <b> par <q>
-    public void testReplaceBoldWithQuote_Exception() throws Exception {
+    // Vérifie que CustomAppException est lancée si une exception survient lors du remplacement des balises de formatage par <q>
+    public void testReplaceFormattingWithQuote_Exception() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
 
         RulesService spyRulesService = Mockito.spy(rulesService);
-        doThrow(new CustomAppException("Test exception")).when(spyRulesService).replaceBoldWithQuote(any(Document.class));
+        doThrow(new CustomAppException("Test exception")).when(spyRulesService).replaceFormattingWithQuote(any(Document.class));
 
         assertThrows(CustomAppException.class, () -> {
-            spyRulesService.replaceBoldWithQuote(document);
+            spyRulesService.replaceFormattingWithQuote(document);
         });
     }
 }

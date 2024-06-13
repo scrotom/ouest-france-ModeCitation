@@ -65,14 +65,20 @@ public class RulesService {
             log.info("Début de l'application des règles sur le document XML");
             replaceFormattingWithQuote(document);
             applyQuoteModeRules(document, allRulesNode);
-            document = reloadDocument(document);
-            applyQuoteModeRules(document, allRulesNode);
+            Document reloadedDocument = reloadDocument(document);
+            if (reloadedDocument != null) {
+                applyQuoteModeRules(reloadedDocument, allRulesNode);
+            } else {
+                log.error("Le document rechargé est null");
+                throw new CustomAppException("Le document rechargé est null");
+            }
             log.info("Fin de l'application des règles sur le document XML");
         } catch (Exception e) {
             log.error("Erreur lors de l'application des règles au document", e);
             throw new CustomAppException("Erreur lors de l'application des règles au document", e);
         }
     }
+
 
     // Recharge le document XML en créant une nouvelle instance de celui-ci
     public Document reloadDocument(Document document) throws CustomAppException {
@@ -154,14 +160,14 @@ public class RulesService {
     }
 
     // Vérifie si le texte contient des citations imbriquées
-    private boolean containsNestedQuotes(String text) {
+    public boolean containsNestedQuotes(String text) {
         Pattern nestedQuotePattern = Pattern.compile("«[^«]*«.*»[^«]*?»");
         Matcher matcher = nestedQuotePattern.matcher(text);
         return matcher.find();
     }
 
     // Vérifie si le texte contient plusieurs citations dans la même balise <b>
-    private boolean containsMultipleQuotesInSameB(String text) {
+    public boolean containsMultipleQuotesInSameB(String text) {
         Pattern multipleQuotesPattern = Pattern.compile("«[^«»]*?»[^«»]*«[^«»]*?»");
         Matcher matcher = multipleQuotesPattern.matcher(text);
         return matcher.find();
@@ -262,7 +268,7 @@ public class RulesService {
     }
 
     // Traite les balises de formatage en dehors des citations
-    private void processFormattingTagsOutsideQuotes(Node pNode) throws CustomAppException {
+    public void processFormattingTagsOutsideQuotes(Node pNode) throws CustomAppException {
         try {
             NodeList formattingNodes = pNode.getChildNodes();
             for (int i = 0; i < formattingNodes.getLength(); i++) {
@@ -288,7 +294,7 @@ public class RulesService {
     }
 
     // Extrait le contenu textuel avec les balises incluses
-    private String getTextContentWithTags(Node node) {
+    public String getTextContentWithTags(Node node) {
         StringBuilder result = new StringBuilder();
         NodeList childNodes = node.getChildNodes();
         for (int i = 0; i < childNodes.getLength(); i++) {

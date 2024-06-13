@@ -1,5 +1,5 @@
 /*
- * Nom         : StartupRunner.java
+ * Nom         : ModeCitationTreatment.java
  *
  * Description : Classe permettant d'appliquer le mode citation sur les documents XML.
  *

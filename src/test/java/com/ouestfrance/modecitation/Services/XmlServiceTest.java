@@ -171,7 +171,7 @@ public class XmlServiceTest {
     }
 
     @Test
-    // Vérifie que CustomAppException est lancée si une exception survient lors de la conversion du document en chaîne
+// Vérifie que CustomAppException est lancée si une exception survient lors de la conversion du document en chaîne
     public void testDocumentToString_Exception() throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -189,4 +189,5 @@ public class XmlServiceTest {
             xmlService.documentToString(document);
         });
     }
+
 }
