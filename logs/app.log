@@ -24095,3 +24095,221 @@ com.ouestfrance.modecitation.Exception.CustomAppException: Test exception
 2024-06-17 11:16:32  [XmlService]  INFO   saveDocumentToFile - Document XML enregistré avec succès
 2024-06-17 11:16:32  [ModeCitationTreatment]  INFO   applyQuoteMode - Traitement du mode citation terminé
 2024-06-17 11:16:32  [StartupRunner]  INFO   run - Traitement des citations terminé avec succès
+2024-06-17 11:37:45  [ModeCitationApplication]  INFO   logStarting - Starting ModeCitationApplication using Java 17.0.11 with PID 16308 (C:\Users\tom.lefevrebonzon\Desktop\modecitation\target\classes started by tom.lefevrebonzon in C:\Users\tom.lefevrebonzon\Desktop\modecitation)
+2024-06-17 11:37:45  [ModeCitationApplication]  INFO   logStartupProfileInfo - No active profile set, falling back to 1 default profile: "default"
+2024-06-17 11:37:46  [ModeCitationApplication]  INFO   logStarted - Started ModeCitationApplication in 1.932 seconds (process running for 5.159)
+2024-06-17 11:37:46  [StartupRunner]  INFO   run - Démarrage de l'application Mode Citation
+2024-06-17 11:37:46  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture des règles depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-17 11:37:46  [RulesService]  INFO   readRules - Lecture des règles depuis le fichier JSON : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/JSONrules/ModeCitationRules.json
+2024-06-17 11:37:47  [RulesService]  INFO   readRules - Règles lues avec succès
+2024-06-17 11:37:47  [ModeCitationTreatment]  INFO   applyQuoteMode - Lecture du document XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-17 11:37:47  [XmlService]  INFO   loadDocument - Chargement du document XML depuis : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-17 11:37:47  [XmlService]  INFO   readXMLFromFile - Lecture du fichier XML : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/XMLinput/ContenuEnEntree.xml
+2024-06-17 11:37:47  [XmlService]  INFO   loadXMLFromString - Chargement du contenu XML depuis une chaîne de caractères
+2024-06-17 11:37:47  [XmlService]  INFO   loadXMLFromString - Document XML chargé avec succès
+2024-06-17 11:37:47  [ModeCitationTreatment]  INFO   applyQuoteMode - Application des règles au document XML
+2024-06-17 11:37:47  [RulesService]  INFO   applyRules - Début de l'application des règles sur le document XML
+2024-06-17 11:37:47  [RulesService]  INFO   replaceFormattingWithQuote - Balises de formatage remplacées par <q> dans le texte : Lorem «ipsum <b>dolor</b> sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   replaceFormattingWithQuote - Balises de formatage remplacées par <q> dans le texte : Lorem «ipsum <b>dolor</b> <b>sit</b> amet» consectetur
+2024-06-17 11:37:47  [RulesService]  INFO   replaceFormattingWithQuote - Balises de formatage remplacées par <q> dans le texte : Lorem «ipsum <i>dolor</i> sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   replaceFormattingWithQuote - Balises de formatage remplacées par <q> dans le texte : Lorem «ipsum <u>dolor</u> sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application des règles de mode citation
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem ipsum dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» dolor «sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : «Lorem» «ipsum» dolor «sit»
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum dolor
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : «ipsum «dolor»
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum» dolor»
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem ipsum dolor»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit «amet»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit «amet»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  consectetur
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum 
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées :  sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit «amet»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit «amet»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum 
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées :  sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit «amet»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem «ipsum» 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit «amet»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum 
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées :  sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[@class='textesansalinea']/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[@class='textealinea']/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[@class='texte']/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Toutes les règles ont été appliquées
+2024-06-17 11:37:47  [RulesService]  INFO   reloadDocument - Rechargement du document XML
+2024-06-17 11:37:47  [RulesService]  INFO   reloadDocument - Document XML rechargé avec succès
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application des règles de mode citation
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[not(@class) or not(string-length(@class))]/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem ipsum dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor 
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum dolor
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : «ipsum «dolor»
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum» dolor»
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem ipsum dolor»
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  consectetur
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum 
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées :  sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum 
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées :  sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  dolor
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  sit
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées : Lorem «ipsum 
+2024-06-17 11:37:47  [RulesService]  WARN   applySurroundedContents - Quotes non correctement imbriquées trouvées :  sit» amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte : Lorem 
+2024-06-17 11:37:47  [RulesService]  INFO   applySurroundedContents - Balise <q> appliquée autour du texte :  amet
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[@class='textesansalinea']/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[@class='textealinea']/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Application de la règle avec XPath : //texte/p[@class='texte']/text()
+2024-06-17 11:37:47  [RulesService]  INFO   applyQuoteModeRules - Toutes les règles ont été appliquées
+2024-06-17 11:37:47  [RulesService]  INFO   applyRules - Fin de l'application des règles sur le document XML
+2024-06-17 11:37:47  [ModeCitationTreatment]  INFO   applyQuoteMode - Enregistrement du document modifié dans : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-17 11:37:47  [XmlService]  INFO   saveDocumentToFile - Enregistrement du document dans le fichier : C:/Users/tom.lefevrebonzon/Desktop/modecitation/src/main/resources/Output/texteSousCitation.xml
+2024-06-17 11:37:47  [XmlService]  INFO   saveDocumentToFile - Document XML enregistré avec succès
+2024-06-17 11:37:47  [ModeCitationTreatment]  INFO   applyQuoteMode - Traitement du mode citation terminé
+2024-06-17 11:37:47  [StartupRunner]  INFO   run - Traitement des citations terminé avec succès

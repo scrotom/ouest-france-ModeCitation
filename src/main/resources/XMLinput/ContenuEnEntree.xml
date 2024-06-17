@@ -104,11 +104,11 @@
 			<p>Lorem «ipsum» <b>«dolor»</b> sit «amet»</p>
 
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
-			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum dolor sit»</q> amet</p> ✅-->
+			<!-- Resultat attendu : <p>Lorem «ipsum <b>dolor</b> sit» amet</p>-->
 			<p>Lorem «ipsum <b>dolor</b> sit» amet</p>
 
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
-			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum dolor sit»</q> amet</p> ✅-->
+			<!-- Resultat attendu : <p>Lorem «ipsum <b>dolor</b> <b>sit</b> amet» consectetur</p>-->
 			<p>Lorem «ipsum <b>dolor</b> <b>sit</b> amet» consectetur</p>
 
 			<!-- Un paragraphe, une quote <b>«»</b> -->
