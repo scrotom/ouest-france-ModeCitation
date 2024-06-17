@@ -59,26 +59,6 @@ public class RulesService {
         }
     }
 
-    // Applique les règles au document XML
-    public void applyRules(Document document, JsonNode allRulesNode) throws CustomAppException {
-        try {
-            log.info("Début de l'application des règles sur le document XML");
-            replaceFormattingWithQuote(document);
-            applyQuoteModeRules(document, allRulesNode);
-            Document reloadedDocument = reloadDocument(document);
-            if (reloadedDocument != null) {
-                applyQuoteModeRules(reloadedDocument, allRulesNode);
-            } else {
-                log.error("Le document rechargé est null");
-                throw new CustomAppException("Le document rechargé est null");
-            }
-            log.info("Fin de l'application des règles sur le document XML");
-        } catch (Exception e) {
-            log.error("Erreur lors de l'application des règles au document", e);
-            throw new CustomAppException("Erreur lors de l'application des règles au document", e);
-        }
-    }
-
 
     // Recharge le document XML en créant une nouvelle instance de celui-ci
     public Document reloadDocument(Document document) throws CustomAppException {
@@ -98,6 +78,25 @@ public class RulesService {
         } catch (Exception e) {
             log.error("Erreur lors du rechargement du document XML", e);
             throw new CustomAppException("Erreur lors du rechargement du document XML", e);
+        }
+    }
+    // Applique les règles au document XML
+    public void applyRules(Document document, JsonNode allRulesNode) throws CustomAppException {
+        try {
+            log.info("Début de l'application des règles sur le document XML");
+            replaceFormattingWithQuote(document);
+            applyQuoteModeRules(document, allRulesNode);
+            Document reloadedDocument = reloadDocument(document);
+            if (reloadedDocument != null) {
+                applyQuoteModeRules(reloadedDocument, allRulesNode);
+            } else {
+                log.error("Le document rechargé est null");
+                throw new CustomAppException("Le document rechargé est null");
+            }
+            log.info("Fin de l'application des règles sur le document XML");
+        } catch (Exception e) {
+            log.error("Erreur lors de l'application des règles au document", e);
+            throw new CustomAppException("Erreur lors de l'application des règles au document", e);
         }
     }
 
