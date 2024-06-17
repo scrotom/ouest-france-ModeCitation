@@ -35,245 +35,252 @@
 
 			<!-- cas généraux -->
 
-
-
-
 			<!-- Un paragraphe, sans quote -->
+			<!-- Entrée : <p>Lorem ipsum dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem ipsum dolor</p> ✅-->
 			<p>Lorem ipsum dolor</p>
 
 			<!-- Un paragraphe, une quote -->
+			<!-- Entrée : <p>Lorem «ipsum» dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p>
 
-			<!-- Un paragraphe, une quote, un texte, une quote, un texte ✅-->
-			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor <q class="containsQuotes">«sit»</q> amet</p> -->
+			<!-- Un paragraphe, une quote, un texte, une quote, un texte -->
+			<!-- Entrée : <p>Lorem «ipsum» dolor «sit» amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor <q class="containsQuotes">«sit»</q> amet</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor <q class="containsQuotes">«sit»</q> amet</p>
 
-			<!-- Un paragraphe, deux quotes, un texte, une quote ✅-->
-			<!-- Resultat attendu : <p><q class="containsQuotes">«Lorem»</q> <q class="containsQuotes">«ipsum»</q> dolor <q class="containsQuotes">«sit»</q></p> -->
+			<!-- Un paragraphe, deux quotes, un texte, une quote -->
+			<!-- Entrée : <p>«Lorem» «ipsum» dolor «sit»</p> -->
+			<!-- Resultat attendu : <p><q class="containsQuotes">«Lorem»</q> <q class="containsQuotes">«ipsum»</q> dolor <q class="containsQuotes">«sit»</q></p> ✅-->
 			<p><q class="containsQuotes">«Lorem»</q> <q class="containsQuotes">«ipsum»</q> dolor <q class="containsQuotes">«sit»</q></p>
 
-
-
-
 			<!-- Un paragraphe, une quote non fini-->
+			<!-- Entrée : <p>Lorem «ipsum dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum dolor</p> ✅-->
 			<p>Lorem «ipsum dolor</p>
 
 			<!-- Un paragraphe, une quote non fini, une quote-->
+			<!-- Entrée : <p>«ipsum «dolor»</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum «dolor»</p> ✅-->
 			<p>«ipsum «dolor»</p>
 
 			<!-- Un paragraphe, une quote, une quote non fini-->
+			<!-- Entrée : <p>Lorem «ipsum» dolor»</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum» dolor»</p> ✅-->
 			<p>Lorem «ipsum» dolor»</p>
 
 			<!-- Un paragraphe, une quote, une quote, une quote non fini-->
+			<!-- Entrée : <p>«Lorem» ipsum «dolor» sit»</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum» dolor»</p> ✅-->
 			<p>«Lorem» ipsum «dolor» sit»</p>
 
 			<!-- Un paragraphe, une quote non ouverte-->
+			<!-- Entrée : <p>Lorem ipsum dolor»</p> -->
 			<!-- Resultat attendu : <p>Lorem ipsum dolor»</p> ✅-->
 			<p>Lorem ipsum dolor»</p>
 
-
-
-
 			<!-- Un paragraphe, deux quotes imbriquées -->
+			<!-- Entrée : <p>Lorem «ipsum «dolor» sit» amet</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum «dolor» sit» amet</p> ✅-->
 			<p>Lorem «ipsum «dolor» sit» amet</p>
 
-
-
-
 			<!-- gestion des balises <b></b> -->
 
-
-
-
 			<!-- Un paragraphe, sans quote, texte sous <b></b> -->
+			<!-- Entrée : <p>Lorem <b>ipsum</b> dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem <b>ipsum</b> dolor</p> ✅-->
 			<p>Lorem <b>ipsum</b> dolor</p>
+
 			<!-- Un paragraphe deux quotes avant apres, texte sous <b></b> -->
+			<!-- Entrée : <p>Lorem «ipsum» <b>dolor</b> sit «amet»</p> -->
 			<!-- Resultat attendu : Lorem <q class="containsQuotes">«ipsum»</q> <b>dolor</b> sit <q class="containsQuotes">«amet»</q> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <b>dolor</b> sit <q class="containsQuotes">«amet»</q></p>
 
 			<!-- Un paragraphe deux quotes avant apres, texte sous <b>«»</b> -->
+			<!-- Entrée : <p>Lorem «ipsum» <b>«dolor»</b> sit «amet»</p> -->
 			<!-- Resultat attendu : Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">dolor</q> sit <q class="containsQuotes">«amet»</q> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit <q class="containsQuotes">«amet»</q></p>
 
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
-			<!-- Resultat attendu : <p>Lorem «ipsum <b>dolor</b> sit» amet</p>-->
-			<p>Lorem <q class="containsQuotes">«ipsum dolor sit»</q> amet</p>
+			<!-- Entrée : <p>Lorem «ipsum <b>dolor</b> sit» amet</p> -->
+			<!-- Resultat attendu : <p>Lorem «ipsum <b>dolor</b> sit» amet</p> ✅-->
+			<p>Lorem «ipsum <b>dolor</b> sit» amet</p>
 
 			<!-- Un paragraphe, une quote, <b></b> au milieu -->
-			<!-- Resultat attendu : <p>Lorem «ipsum <b>dolor</b> <b>sit</b> amet» consectetur</p>-->
-			<p>Lorem <q class="containsQuotes">«ipsum &lt;b&gt;dolor&lt;/b&gt; sit amet»</q> consectetur</p>
+			<!-- Entrée : <p>Lorem «ipsum <b>dolor</b> <b>sit</b> amet» consectetur</p> -->
+			<!-- Resultat attendu : <p>Lorem «ipsum <b>dolor</b> <b>sit</b> amet» consectetur</p> ✅-->
+			<p>Lorem «ipsum <b>dolor</b> <b>sit</b> amet» consectetur</p>
 
 			<!-- Un paragraphe, une quote <b>«»</b> -->
+			<!-- Entrée : <p>Lorem <b>«ipsum»</b> dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p>
 
 			<!-- Un paragraphe, une quote <b>«»</b> sur tout le paragraphe -->
+			<!-- Entrée : <p><b>«Lorem»</b></p> -->
 			<!-- Resultat attendu : <p><q class="containsQuotes">«Lorem»</q></p> ✅-->
 			<p><q class="containsQuotes">«Lorem»</q></p>
 
 			<!-- Un paragraphe, deux quote <b>«»</b> -->
+			<!-- Entrée : <p>Lorem <b>«ipsum»</b> <b>«dolor»</b> sit</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit</p>
 
 			<!-- Un paragraphe, une quote <b>«»</b>, interieur 2 quotes -->
+			<!-- Entrée : <p>Lorem <b>«ipsum» dolor «sit»</b> amet</p> -->
 			<!-- Resultat attendu : <p>Lorem <b>«ipsum» dolor «sit»</b> amet</p> ✅-->
 			<p>Lorem <b>«ipsum» dolor «sit»</b> amet</p>
 
-
-
-
-			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu ✅-->
-			<!-- Resultat attendu : ? Lorem «ipsum <b>«dolor»</b> sit» amet -->
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
+			<!-- Entrée : <p>Lorem «ipsum <b>«dolor»</b> sit» amet</p> -->
+			<!-- Resultat attendu : ? Lorem «ipsum <b>«dolor»</b> sit» amet ✅-->
 			<p>Lorem «ipsum <b>«dolor»</b> sit» amet</p>
 
-			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe ✅-->
-			<!-- Resultat attendu : <p>Lorem <b>«ipsum «dolor» sit»</b> amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
+			<!-- Entrée : <p>Lorem <b>«ipsum «dolor» sit»</b> amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <b>«ipsum «dolor» sit»</b> amet</p> ✅-->
 			<p>Lorem <b>«ipsum «dolor» sit»</b> amet</p>
 
-			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes CAS IMPOSSIBLE : BALISE <b> DANS BALISE <b>  ✅-->
-			<!-- Resultat attendu : <p>Lorem <b>«ipsum <b>«dolor»</b> sit»</b> amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur les deux quotes CAS IMPOSSIBLE : BALISE <b> DANS BALISE <b> -->
+			<!-- Entrée : <p>Lorem <b>«ipsum <b>«dolor»</b> sit»</b> amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <b>«ipsum <b>«dolor»</b> sit»</b> amet</p> ✅-->
 			<p>Lorem <b>«ipsum <b>«dolor»</b> sit»</b> amet</p>
 
-			<!-- Un paragraphe, <b></b> imbriqués CAS IMPOSSIBLE : BALISE <b> DANS BALISE <b> ✅-->
-			<!-- Resultat attendu : Lorem <b>ipsum <b>dolor</b> sit</b> amet -->
+			<!-- Un paragraphe, <b></b> imbriqués CAS IMPOSSIBLE : BALISE <b> DANS BALISE <b> -->
+			<!-- Entrée : <p>Lorem <b>ipsum <b>dolor</b> sit</b> amet</p> -->
+			<!-- Resultat attendu : Lorem <b>ipsum <b>dolor</b> sit</b> amet ✅-->
 			<p>Lorem <b>ipsum <b>dolor</b> sit</b> amet</p>
-
-
-
 
 			<!-- gestion des balises <i></i> -->
 
-
-
-
 			<!-- Un paragraphe, sans quote, texte sous <i></i> -->
+			<!-- Entrée : <p>Lorem <i>ipsum</i> dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem <i>ipsum</i> dolor</p> ✅-->
 			<p>Lorem <i>ipsum</i> dolor</p>
 
 			<!-- Un paragraphe deux quotes avant apres, texte sous <i></i> -->
+			<!-- Entrée : <p>Lorem «ipsum» <i>dolor</i> sit «amet»</p> -->
 			<!-- Resultat attendu : Lorem <q class="containsQuotes">«ipsum»</q> <i>dolor</i> sit <q class="containsQuotes">«amet»</q> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <i>dolor</i> sit <q class="containsQuotes">«amet»</q></p>
 
 			<!-- Un paragraphe deux quotes avant apres, texte sous <i>«»</i> -->
+			<!-- Entrée : <p>Lorem «ipsum» <i>«dolor»</i> sit «amet»</p> -->
 			<!-- Resultat attendu : Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">dolor</q> sit <q class="containsQuotes">«amet»</q> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit <q class="containsQuotes">«amet»</q></p>
 
 			<!-- Un paragraphe, une quote, <i></i> au milieu -->
+			<!-- Entrée : <p>Lorem «ipsum <i>dolor</i> sit» amet</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum dolor sit»</q> amet</p> ✅-->
-			<p>Lorem <q class="containsQuotes">«ipsum dolor sit»</q> amet</p>
+			<p>Lorem «ipsum <i>dolor</i> sit» amet</p>
 
 			<!-- Un paragraphe, une quote <i>«»</i> -->
+			<!-- Entrée : <p>Lorem <i>«ipsum»</i> dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p>
 
 			<!-- Un paragraphe, deux quote <i>«»</i> -->
+			<!-- Entrée : <p>Lorem <i>«ipsum»</i> <i>«dolor»</i> sit</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit</p>
 
 			<!-- Un paragraphe, une quote <i>«»</i>, interieur 2 quotes -->
+			<!-- Entrée : <p>Lorem <i>«ipsum» dolor «sit»</i> amet</p> -->
 			<!-- Resultat attendu : <p>Lorem <i>«ipsum» dolor «sit»</i> amet</p> ✅-->
 			<p>Lorem <i>«ipsum» dolor «sit»</i> amet</p>
 
-
-
-
-			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote du milieu ✅-->
-			<!-- Resultat attendu : <p>Lorem «ipsum <i>«dolor»</i> sit» amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote du milieu -->
+			<!-- Entrée : <p>Lorem «ipsum <i>«dolor»</i> sit» amet</p> -->
+			<!-- Resultat attendu : <p>Lorem «ipsum <i>«dolor»</i> sit» amet</p> ✅-->
 			<p>Lorem «ipsum <i>«dolor»</i> sit» amet</p>
 
-			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote externe ✅-->
-			<!-- Resultat attendu : <p>Lorem <b>«ipsum «dolor» sit»</b> amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote externe -->
+			<!-- Entrée : <p>Lorem <i>«ipsum «dolor» sit»</i> amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum «dolor» sit»</q> amet</p> ✅-->
 			<p>Lorem <i>«ipsum «dolor» sit»</i> amet</p>
 
-			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur les deux quotes CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i>  ✅-->
-			<!-- Resultat attendu : <p>Lorem <i>«ipsum <i>«dolor»</i> sit»</i> amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur les deux quotes CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> -->
+			<!-- Entrée : <p>Lorem <i>«ipsum <i>«dolor»</i> sit»</i> amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <i>«ipsum <i>«dolor»</i> sit»</i> amet</p> ✅-->
 			<p>Lorem <i>«ipsum <i>«dolor»</i> sit»</i> amet</p>
 
-			<!-- Un paragraphe, <i></i> imbriqués CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> ✅-->
-			<!-- Resultat attendu : Lorem <i>ipsum <i>dolor</i> sit</i> amet -->
+			<!-- Un paragraphe, <i></i> imbriqués CAS IMPOSSIBLE : BALISE <i> DANS BALISE <i> -->
+			<!-- Entrée : <p>Lorem <i>ipsum <i>dolor</i> sit</i> amet</p> -->
+			<!-- Resultat attendu : Lorem <i>ipsum <i>dolor</i> sit</i> amet ✅-->
 			<p>Lorem <i>ipsum <i>dolor</i> sit</i> amet</p>
-
-
-
 
 			<!-- gestion des balises <u></u> -->
 
-
-
-
 			<!-- Un paragraphe, sans quote, texte sous <u></u> -->
+			<!-- Entrée : <p>Lorem <u>ipsum</u> dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem <u>ipsum</u> dolor</p> ✅-->
 			<p>Lorem <u>ipsum</u> dolor</p>
 
 			<!-- Un paragraphe deux quotes avant apres, texte sous <u></u> -->
+			<!-- Entrée : <p>Lorem «ipsum» <u>dolor</u> sit «amet»</p> -->
 			<!-- Resultat attendu : Lorem <q class="containsQuotes">«ipsum»</q> <u>dolor</u> sit <q class="containsQuotes">«amet»</q> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <u>dolor</u> sit <q class="containsQuotes">«amet»</q></p>
 
 			<!-- Un paragraphe deux quotes avant apres, texte sous <u>«»</u> -->
+			<!-- Entrée : <p>Lorem «ipsum» <u>«dolor»</u> sit «amet»</p> -->
 			<!-- Resultat attendu : Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">dolor</q> sit <q class="containsQuotes">«amet»</q> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit <q class="containsQuotes">«amet»</q></p>
 
 			<!-- Un paragraphe, une quote, <u></u> au milieu -->
+			<!-- Entrée : <p>Lorem «ipsum <u>dolor</u> sit» amet</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum dolor sit»</q> amet</p> ✅-->
-			<p>Lorem <q class="containsQuotes">«ipsum dolor sit»</q> amet</p>
+			<p>Lorem «ipsum <u>dolor</u> sit» amet</p>
 
 			<!-- Un paragraphe, une quote <u>«»</u> -->
+			<!-- Entrée : <p>Lorem <u>«ipsum»</u> dolor</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p>
 
 			<!-- Un paragraphe, deux quote <u>«»</u> -->
+			<!-- Entrée : <p>Lorem <u>«ipsum»</u> <u>«dolor»</u> sit</p> -->
 			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit</p> ✅-->
 			<p>Lorem <q class="containsQuotes">«ipsum»</q> <q class="containsQuotes">«dolor»</q> sit</p>
 
 			<!-- Un paragraphe, une quote <u>«»</u>, interieur 2 quotes -->
+			<!-- Entrée : <p>Lorem <u>«ipsum» dolor «sit»</u> amet</p> -->
 			<!-- Resultat attendu : <p>Lorem <u>«ipsum» dolor «sit»</u> amet</p> ✅-->
 			<p>Lorem <u>«ipsum» dolor «sit»</u> amet</p>
 
-
-
-
-			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote du milieu ✅-->
-			<!-- Resultat attendu : <p>Lorem «ipsum <u>«dolor»</u> sit» amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote du milieu -->
+			<!-- Entrée : <p>Lorem «ipsum <u>«dolor»</u> sit» amet</p> -->
+			<!-- Resultat attendu : <p>Lorem «ipsum <u>«dolor»</u> sit» amet</p> ✅-->
 			<p>Lorem «ipsum <u>«dolor»</u> sit» amet</p>
 
-			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote externe ✅-->
-			<!-- Resultat attendu : <p>Lorem <b>«ipsum «dolor» sit»</b> amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote externe -->
+			<!-- Entrée : <p>Lorem <u>«ipsum «dolor» sit»</u> amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum «dolor» sit»</q> amet</p> ✅-->
 			<p>Lorem <u>«ipsum «dolor» sit»</u> amet</p>
 
-			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur les deux quotes CAS IMPOSSIBLE : BALISE <u> DANS BALISE <u>  ✅-->
-			<!-- Resultat attendu : <p>Lorem <u>«ipsum <u>«dolor»</u> sit»</u> amet</p> -->
+			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur les deux quotes CAS IMPOSSIBLE : BALISE <u> DANS BALISE <u> -->
+			<!-- Entrée : <p>Lorem <u>«ipsum <u>«dolor»</u> sit»</u> amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <u>«ipsum <u>«dolor»</u> sit»</u> amet</p> ✅-->
 			<p>Lorem <u>«ipsum <u>«dolor»</u> sit»</u> amet</p>
 
-			<!-- Un paragraphe, <u></u> imbriqués CAS IMPOSSIBLE : BALISE <u> DANS BALISE <u> ✅-->
-			<!-- Resultat attendu : Lorem <u>ipsum <u>dolor</u> sit</u> amet -->
+			<!-- Un paragraphe, <u></u> imbriqués CAS IMPOSSIBLE : BALISE <u> DANS BALISE <u> -->
+			<!-- Entrée : <p>Lorem <u>ipsum <u>dolor</u> sit</u> amet</p> -->
+			<!-- Resultat attendu : Lorem <u>ipsum <u>dolor</u> sit</u> amet ✅-->
 			<p>Lorem <u>ipsum <u>dolor</u> sit</u> amet</p>
-
-
-
 
 			<!-- gestion des balises <i></i> avec balises <b></b> et <u></u> -->
 
-
-
-
-			<!-- Un paragraphe, <i>«»</i><b>«»</b> imbriqués : BALISE <b> DANS BALISE <i>  ✅-->
-			<!-- Resultat attendu : <p>Lorem <i>«ipsum <i>«dolor»</i> sit»</i> amet</p> -->
+			<!-- Un paragraphe, <i>«»</i><b>«»</b> imbriqués : BALISE <b> DANS BALISE <i> -->
+			<!-- Entrée : <p>Lorem <i>«ipsum <b>«dolor»</b> sit»</i> amet</p> -->
+			<!-- Resultat attendu : <p>Lorem <i>«ipsum <b>«dolor»</b> sit»</i> amet</p> ✅-->
 			<p>Lorem <i>«ipsum <b>«dolor»</b> sit»</i> amet</p>
 
-			<!-- Un paragraphe, <i></i><u></u> imbriqués : BALISE <i> DANS BALISE <u> ✅-->
-			<!-- Resultat attendu : Lorem <i>ipsum <i>dolor</i> sit</i> amet -->
+			<!-- Un paragraphe, <i></i><u></u> imbriqués : BALISE <i> DANS BALISE <u> -->
+			<!-- Entrée : <p>Lorem <u>ipsum <i>dolor</i> sit</u> amet</p> -->
+			<!-- Resultat attendu : Lorem <u>ipsum <i>dolor</i> sit</u> amet ✅-->
 			<p>Lorem <u>ipsum <i>dolor</i> sit</u> amet</p>
 
-			<!-- Un paragraphe, <b></b><u></u> imbriqués : BALISE <b> DANS BALISE <u> ✅-->
-			<!-- Resultat attendu : Lorem <i>ipsum <i>dolor</i> sit</i> amet -->
+			<!-- Un paragraphe, <b></b><u></u> imbriqués : BALISE <b> DANS BALISE <u> -->
+			<!-- Entrée : <p>Lorem <u>ipsum <b>dolor</b> sit</u> amet</p> -->
+			<!-- Resultat attendu : Lorem <u>ipsum <b>dolor</b> sit</u> amet ✅-->
 			<p>Lorem <u>ipsum <b>dolor</b> sit</u> amet</p>
 
 			<signature xsm-preserve="true">JM Bayeux.</signature>

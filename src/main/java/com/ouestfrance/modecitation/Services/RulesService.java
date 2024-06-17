@@ -242,7 +242,14 @@ public class RulesService {
     }
 
 
-    // Remplace les balises de formatage par des balises de citation <q>
+    // Ajoutez cette méthode pour vérifier les balises de formatage
+    public boolean containsFormattingTags(String text) {
+        Pattern formattingTagPattern = Pattern.compile("<(b|i|u)>");
+        Matcher matcher = formattingTagPattern.matcher(text);
+        return matcher.find();
+    }
+
+    // Mettez à jour la méthode replaceFormattingWithQuote pour inclure la vérification des balises de formatage dans les citations
     public void replaceFormattingWithQuote(Document document) throws CustomAppException {
         try {
             XPath xPath = XPathFactory.newInstance().newXPath();
@@ -253,6 +260,24 @@ public class RulesService {
                 String pContent = getTextContentWithTags(pNode);
 
                 if (containsNestedQuotes(pContent)) {
+                    continue;
+                }
+
+                // Vérifier si les citations contiennent des balises de formatage
+                Pattern quotePattern = Pattern.compile("«(.*?)»");
+                Matcher quoteMatcher = quotePattern.matcher(pContent);
+                boolean hasFormattingInQuotes = false;
+
+                while (quoteMatcher.find()) {
+                    String quoteContent = quoteMatcher.group(1);
+                    if (containsFormattingTags(quoteContent)) {
+                        hasFormattingInQuotes = true;
+                        break;
+                    }
+                }
+
+                if (hasFormattingInQuotes) {
+                    log.info("Texte contenant des balises de formatage à l'intérieur des citations trouvé, ignoré : {}", pContent);
                     continue;
                 }
 
