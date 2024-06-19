@@ -33,11 +33,20 @@
 		<media-groupe/>
 		<texte id="RP9HSKTjkiFtJO0H3Wgf1hK">
 
-			<!-- cas généraux -->
-			<p>Lorem «ipsum <b>dolor</b> sit» amet</p>
+			<!-- Un paragraphe, quote dans multiples balises -->
+			<!-- Entrée : <p>Lorem <u><b><i>«ipsum»</i></b></u> dolor</p> -->
+			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> -->
+			<p>Lorem <u><b><i>«ipsum»</i></b></u> dolor</p>
 
+			<!-- Un paragraphe, quote dans multiples balises -->
+			<!-- Entrée : <p>Lorem <b><u>«ipsum»</u></b> dolor</p> -->
+			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> -->
+			<p>alpha <b><u>«beta»</u></b> gamma</p>
 
-			<p>Lorem «ipsum <b>dolor</b> <b>dolor</b> sit» amet</p>
+			<!-- Un paragraphe, multiples balises -->
+			<!-- Entrée : <p>Lorem <i><u><b>ipsum</b></u></i> dolor</p> -->
+			<!-- Resultat attendu : <p>Lorem <i><u><b>ipsum</b></u></i> dolor</p> ✅ -->
+			<p>toto <i><u><b>tata</b></u></i> titi</p>
 
 			<signature xsm-preserve="true">JM Bayeux.</signature>
 		</texte>
