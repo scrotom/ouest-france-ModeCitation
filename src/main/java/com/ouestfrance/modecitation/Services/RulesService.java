@@ -86,13 +86,6 @@ public class RulesService {
             log.info("Début de l'application des règles sur le document XML");
             replaceFormattingWithQuote(document);
             applyQuoteModeRules(document, allRulesNode);
-            Document reloadedDocument = reloadDocument(document);
-            if (reloadedDocument != null) {
-                applyQuoteModeRules(reloadedDocument, allRulesNode);
-            } else {
-                log.error("Le document rechargé est null");
-                throw new CustomAppException("Le document rechargé est null");
-            }
             log.info("Fin de l'application des règles sur le document XML");
         } catch (Exception e) {
             log.error("Erreur lors de l'application des règles au document", e);
