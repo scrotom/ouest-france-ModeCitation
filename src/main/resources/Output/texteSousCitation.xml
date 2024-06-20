@@ -36,26 +36,6 @@
 
 
 
-			<!-- test en cours -->
-
-
-
-			<!-- Un paragraphe, quote dans multiples balises -->
-			<!-- Entrée : <p>Lorem <u><b><i>«ipsum»</i></b></u> dolor</p> -->
-			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> -->
-			<p>Lorem <q class="containsQuotes"><b><i>«ipsum»</i></b></q> dolor</p>
-
-			<!-- Un paragraphe, quote dans multiples balises -->
-			<!-- Entrée : <p>Lorem <b><u>«ipsum»</u></b> dolor</p> -->
-			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> -->
-			<p>Lorem <q class="containsQuotes"><u>«ipsum»</u></q> dolor</p>
-
-
-			<!-- Un paragraphe, multiples balises -->
-			<!-- Entrée : <p>Lorem <i><u><b>ipsum</b></u></i> dolor</p> -->
-			<!-- Resultat attendu : <p>Lorem <i><u><b>ipsum</b></u></i> dolor</p> ✅ -->
-			<p>Lorem <i><u><b>ipsum</b></u></i> dolor</p>
-
 			<!-- cas généraux -->
 
 
@@ -332,6 +312,22 @@
 			<!-- Entrée : <p>Lorem <u>ipsum <b>dolor</b> sit</u> amet</p> -->
 			<!-- Resultat attendu : <p>Lorem <u>ipsum <b>dolor</b> sit</u> amet</p> ✅-->
 			<p>Lorem <u>ipsum <b>dolor</b> sit</u> amet</p>
+
+			<!-- Un paragraphe, quote dans multiples balises -->
+			<!-- Entrée : <p>Lorem <u><b><i>«ipsum»</i></b></u> dolor</p> -->
+			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> ✅ -->
+			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p>
+
+			<!-- Un paragraphe, quote dans multiples balises -->
+			<!-- Entrée : <p>Lorem <b><u>«ipsum»</u></b> dolor</p> -->
+			<!-- Resultat attendu : <p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p> ✅ -->
+			<p>Lorem <q class="containsQuotes">«ipsum»</q> dolor</p>
+
+
+			<!-- Un paragraphe, multiples balises -->
+			<!-- Entrée : <p>Lorem <i><u><b>ipsum</b></u></i> dolor</p> -->
+			<!-- Resultat attendu : <p>Lorem <i><u><b>ipsum</b></u></i> dolor</p> ✅ -->
+			<p>Lorem <i><u><b>ipsum</b></u></i> dolor</p>
 
 			<signature xsm-preserve="true">JM Bayeux.</signature>
 		</texte>
