@@ -132,7 +132,7 @@
 			<!-- Un paragraphe, une quote <b>«»</b> sur tout le paragraphe -->
 			<!-- Entrée : <p><b>«Lorem»</b></p> -->
 			<!-- Resultat attendu : <p><q class="containsQuotes">«Lorem»</q></p> ✅-->
-			<p><q class="containsQuotes">«Lorem»</q></p>
+			<p><b>«Lorem»</b></p>
 
 			<!-- Un paragraphe, deux quote <b>«»</b> -->
 			<!-- Entrée : <p>Lorem <b>«ipsum»</b> <b>«dolor»</b> sit</p> -->
@@ -147,7 +147,7 @@
 			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote du milieu -->
 			<!-- Entrée : <p>Lorem «ipsum <b>«dolor»</b> sit» amet</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum <b>«dolor»</b> sit» amet</p> ✅-->
-			<p>Lorem «ipsum <b>«dolor»</b> sit» amet</p>
+			<p>Lorem «ipsum <q class="containsQuotes">«dolor»</q> sit» amet</p>
 
 			<!-- Un paragraphe, deux quotes imbriquées, <b>«»</b> sur la quote externe -->
 			<!-- Entrée : <p>Lorem <b>«ipsum «dolor» sit»</b> amet</p> -->
@@ -210,7 +210,7 @@
 			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote du milieu -->
 			<!-- Entrée : <p>Lorem «ipsum <i>«dolor»</i> sit» amet</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum <i>«dolor»</i> sit» amet</p> ✅-->
-			<p>Lorem «ipsum <i>«dolor»</i> sit» amet</p>
+			<p>Lorem «ipsum <q class="containsQuotes">«dolor»</q> sit» amet</p>
 
 			<!-- Un paragraphe, deux quotes imbriquées, <i>«»</i> sur la quote externe -->
 			<!-- Entrée : <p>Lorem <i>«ipsum «dolor» sit»</i> amet</p> -->
@@ -273,7 +273,7 @@
 			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote du milieu -->
 			<!-- Entrée : <p>Lorem «ipsum <u>«dolor»</u> sit» amet</p> -->
 			<!-- Resultat attendu : <p>Lorem «ipsum <u>«dolor»</u> sit» amet</p> ✅-->
-			<p>Lorem «ipsum <u>«dolor»</u> sit» amet</p>
+			<p>Lorem «ipsum <q class="containsQuotes">«dolor»</q> sit» amet</p>
 
 			<!-- Un paragraphe, deux quotes imbriquées, <u>«»</u> sur la quote externe -->
 			<!-- Entrée : <p>Lorem <u>«ipsum «dolor» sit»</u> amet</p> -->

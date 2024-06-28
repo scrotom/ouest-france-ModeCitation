@@ -71,8 +71,11 @@ public class RulesService {
     public void applyRules(Document document, JsonNode allRulesNode) throws CustomAppException {
         try {
             log.info("Début de l'application des règles sur le document XML");
-            replaceFormattingWithQuote(document);
-            applyQuoteModeRules(document, allRulesNode);
+            for (JsonNode ruleNode : allRulesNode) {
+                String xpath = ruleNode.get("xpath").asText();
+                log.info("Application de la règle avec XPath : {}", xpath);
+                applyFormattingAndQuotesToMatchingParagraphs(document, xpath);
+            }
             log.info("Fin de l'application des règles sur le document XML");
         } catch (Exception e) {
             log.error("Erreur lors de l'application des règles au document", e);
@@ -80,28 +83,8 @@ public class RulesService {
         }
     }
 
-    public void applyQuoteModeRules(Document document, JsonNode allRulesNode) throws CustomAppException {
+    private void applyFormattingAndQuotesToMatchingParagraphs(Document document, String xpath) throws CustomAppException {
         try {
-            log.info("Application des règles de mode citation");
-            for (JsonNode ruleNode : allRulesNode) {
-                JsonNode xpathNode = ruleNode.get("xpath");
-                if (xpathNode != null) {
-                    log.info("Application de la règle avec XPath : {}", xpathNode.asText());
-                    applyOneRule(document, xpathNode.asText());
-                } else {
-                    log.warn("Règle sans XPath : {}", ruleNode);
-                }
-            }
-            log.info("Toutes les règles ont été appliquées");
-        } catch (Exception e) {
-            log.error("Erreur lors de l'application des règles au document", e);
-            throw new CustomAppException("Erreur lors de l'application des règles au document", e);
-        }
-    }
-
-    public void applyOneRule(Document document, String xpath) throws CustomAppException {
-        try {
-            log.info("Début de applyOneRule avec XPath : {}", xpath);
             XPath xPath = XPathFactory.newInstance().newXPath();
             NodeList nodes = (NodeList) xPath.evaluate(xpath, document, XPathConstants.NODESET);
             log.info("Nombre de noeuds trouvés avec XPath {}: {}", xpath, nodes.getLength());
@@ -109,6 +92,11 @@ public class RulesService {
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node node = nodes.item(i);
                 log.info("Traitement du noeud {}: {}", i, node.getTextContent());
+                if (node.getNodeType() == Node.TEXT_NODE) {
+                    processFormattingTagsOutsideQuotes(node.getParentNode());
+                } else {
+                    processFormattingTagsOutsideQuotes(node);
+                }
                 deepCheck(node, document);
             }
         } catch (Exception e) {
@@ -226,47 +214,6 @@ public class RulesService {
         return matcher.find();
     }
 
-    public void replaceFormattingWithQuote(Document document) throws CustomAppException {
-        try {
-            log.info("Début de replaceFormattingWithQuote");
-            XPath xPath = XPathFactory.newInstance().newXPath();
-            NodeList pNodes = (NodeList) xPath.evaluate("//p", document, XPathConstants.NODESET);
-            log.info("Nombre de noeuds <p> trouvés : {}", pNodes.getLength());
-
-            for (int i = 0; i < pNodes.getLength(); i++) {
-                Node pNode = pNodes.item(i);
-                String pContent = getTextContentWithTags(pNode);
-                log.info("Contenu du noeud <p> {}: {}", i, pContent);
-
-                if (containsNestedQuotes(pContent)) {
-                    log.info("Le noeud <p> {} contient des citations imbriquées, il est ignoré : {}", i, pContent);
-                    continue;
-                }
-
-                Pattern quotePattern = Pattern.compile("«(.*?)»");
-                Matcher quoteMatcher = quotePattern.matcher(pContent);
-                boolean hasFormattingInQuotes = false;
-
-                while (quoteMatcher.find()) {
-                    String quoteContent = quoteMatcher.group(1);
-                    if (containsFormattingTags(quoteContent)) {
-                        hasFormattingInQuotes = true;
-                        break;
-                    }
-                }
-
-                if (hasFormattingInQuotes) {
-                    log.info("Texte contenant des balises de formatage à l'intérieur des citations trouvé, ignoré : {}", pContent);
-                    continue;
-                }
-
-                processFormattingTagsOutsideQuotes(pNode);
-            }
-        } catch (Exception e) {
-            throw new CustomAppException("Erreur lors du remplacement des balises de formatage par <q>", e);
-        }
-    }
-
     public void processFormattingTagsOutsideQuotes(Node pNode) throws CustomAppException {
         try {
             log.info("Début de processFormattingTagsOutsideQuotes pour le noeud : {}", pNode.getTextContent());
@@ -278,12 +225,11 @@ public class RulesService {
                     String formattingTextContent = formattingNode.getTextContent().trim();
                     log.info("Contenu du texte sous balise de formatage : {}", formattingTextContent);
 
-                    if (formattingTextContent.startsWith("«") && formattingTextContent.endsWith("»") && !containsMultipleQuotesInSameB(formattingTextContent)) {
+                    // Check if the content has properly nested quotes
+                    if (!containsNestedQuotes(formattingTextContent) && !isNestedWithinQuotes(formattingNode) && formattingTextContent.startsWith("«") && formattingTextContent.endsWith("»") && !containsMultipleQuotesInSameB(formattingTextContent)) {
                         Element qElement = pNode.getOwnerDocument().createElement("q");
                         qElement.setAttribute("class", "containsQuotes");
-
                         qElement.setTextContent(formattingTextContent);
-
                         formattingNode.getParentNode().replaceChild(qElement, formattingNode);
                         log.info("Balise <q> appliquée autour du texte : {}", formattingTextContent);
                     }
@@ -292,6 +238,20 @@ public class RulesService {
         } catch (Exception e) {
             throw new CustomAppException("Erreur lors du traitement des balises de formatage en dehors des citations", e);
         }
+    }
+
+    public boolean isNestedWithinQuotes(Node node) {
+        Node parent = node.getParentNode();
+        while (parent != null) {
+            if (parent.getNodeType() == Node.TEXT_NODE) {
+                String textContent = parent.getTextContent();
+                if (textContent.contains("«") && textContent.contains("»")) {
+                    return true;
+                }
+            }
+            parent = parent.getParentNode();
+        }
+        return false;
     }
 
     public String getTextContentWithTags(Node node) {
